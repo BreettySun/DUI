@@ -6,6 +6,20 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface DIcon {
+        /**
+          * 图标颜色
+         */
+        "color": string;
+        /**
+          * 图标名称
+         */
+        "name": string;
+        /**
+          * 图标大小
+         */
+        "size": string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -21,7 +35,28 @@ export namespace Components {
         "middle": string;
     }
 }
+export interface DIconCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDIconElement;
+}
 declare global {
+    interface HTMLDIconElementEventMap {
+        "iconClick": MouseEvent;
+    }
+    interface HTMLDIconElement extends Components.DIcon, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDIconElementEventMap>(type: K, listener: (this: HTMLDIconElement, ev: DIconCustomEvent<HTMLDIconElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDIconElementEventMap>(type: K, listener: (this: HTMLDIconElement, ev: DIconCustomEvent<HTMLDIconElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDIconElement: {
+        prototype: HTMLDIconElement;
+        new (): HTMLDIconElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -29,10 +64,29 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "d-icon": HTMLDIconElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface DIcon {
+        /**
+          * 图标颜色
+         */
+        "color"?: string;
+        /**
+          * 图标名称
+         */
+        "name"?: string;
+        /**
+          * 点击事件
+         */
+        "onIconClick"?: (event: DIconCustomEvent<MouseEvent>) => void;
+        /**
+          * 图标大小
+         */
+        "size"?: string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -48,6 +102,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "d-icon": DIcon;
         "my-component": MyComponent;
     }
 }
@@ -55,6 +110,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "d-icon": LocalJSX.DIcon & JSXBase.HTMLAttributes<HTMLDIconElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }

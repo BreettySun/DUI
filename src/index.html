@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Stencil Component Starter</title>
 
-    <script type="module" src="/build/dui.esm.js"></script>
-    <script nomodule src="/build/dui.js"></script>
-  </head>
-  <body>
-    <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Stencil Component Starter</title>
+
+  <script type="module" src="/build/dui.esm.js"></script>
+  <script nomodule src="/build/dui.js"></script>
+</head>
+
+<body>
+  <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
+  <!-- 默认心形图标 -->
+  <d-icon></d-icon>
+
+  <!-- 自定义大小和颜色 -->
+  <d-icon size="32px" color="#ff0000" name="star"></d-icon>
+
+  <!-- 添加点击事件 -->
+  <d-icon onIconClick="()=> console.log('图标被点击了')"></d-icon>
+</body>
+
 </html>

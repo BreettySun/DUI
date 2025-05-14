@@ -22,6 +22,16 @@ export class DIcon {
 	@Prop() color: string = "#333333";
 
 	/**
+	 * 旋转角度（度数）
+	 */
+	@Prop() rotate: number = 0;
+
+	/**
+	 * 是否启用旋转动画
+	 */
+	@Prop() spin: boolean = false;
+
+	/**
 	 * 点击事件
 	 */
 	@Event() iconClick: EventEmitter<MouseEvent>;
@@ -49,6 +59,11 @@ export class DIcon {
 	}
 
 	render() {
+		const svgStyle = {
+			transform: this.rotate ? `rotate(${this.rotate}deg)` : '',
+			animation: this.spin ? 'spin 2s linear infinite' : 'none'
+		};
+
 		return (
 			<Host onClick={this.handleClick}>
 				<svg
@@ -56,7 +71,8 @@ export class DIcon {
 					width={this.size}
 					height={this.size}
 					viewBox="0 0 24 24"
-					fill="none">
+					fill="none"
+					style={svgStyle}>
 					<g fill={this.color}>{this.renderIcon()}</g>
 				</svg>
 			</Host>

@@ -16,9 +16,17 @@ export namespace Components {
          */
         "name": string;
         /**
+          * 旋转角度（度数）
+         */
+        "rotate": number;
+        /**
           * 图标大小
          */
         "size": string;
+        /**
+          * 是否启用旋转动画
+         */
+        "spin": boolean;
     }
     interface MyComponent {
         /**
@@ -83,9 +91,17 @@ declare namespace LocalJSX {
          */
         "onIconClick"?: (event: DIconCustomEvent<MouseEvent>) => void;
         /**
+          * 旋转角度（度数）
+         */
+        "rotate"?: number;
+        /**
           * 图标大小
          */
         "size"?: string;
+        /**
+          * 是否启用旋转动画
+         */
+        "spin"?: boolean;
     }
     interface MyComponent {
         /**

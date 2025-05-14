@@ -1,5 +1,5 @@
-import { B as BUILD, c as consoleDevInfo, H, w as win, N as NAMESPACE, p as promiseResolve, b as bootstrapLazy } from './index-ydzDOIYF.js';
-export { s as setNonce } from './index-ydzDOIYF.js';
+import { B as BUILD, c as consoleDevInfo, H, w as win, N as NAMESPACE, p as promiseResolve, b as bootstrapLazy } from './index-Bjd0JIbV.js';
+export { s as setNonce } from './index-Bjd0JIbV.js';
 import { g as globalScripts } from './app-globals-DQuL1Twl.js';
 
 /*
@@ -44,7 +44,7 @@ var patchCloneNodeFix = (HTMLElementPrototype) => {
 
 patchBrowser().then(async (options) => {
   await globalScripts();
-  return bootstrapLazy([["d-icon",[[1,"d-icon",{"name":[1],"size":[1],"color":[1]}]]],["my-component",[[1,"my-component",{"first":[1],"middle":[1],"last":[1]}]]]], options);
+  return bootstrapLazy([["d-icon",[[1,"d-icon",{"name":[1],"size":[1],"color":[1],"rotate":[2],"spin":[4]}]]],["my-component",[[1,"my-component",{"first":[1],"middle":[1],"last":[1]}]]]], options);
 });
 //# sourceMappingURL=dui.esm.js.map
 

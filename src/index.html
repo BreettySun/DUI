@@ -13,13 +13,52 @@
 <body>
   <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
   <!-- 默认心形图标 -->
-  <d-icon></d-icon>
+  <d-icon id="heart-icon"></d-icon>
 
   <!-- 自定义大小和颜色 -->
-  <d-icon size="32px" color="#ff0000" name="star"></d-icon>
+  <d-icon size="32px" color="#ff0000" name="star" id="icon-star"></d-icon>
 
-  <!-- 添加点击事件 -->
-  <d-icon onIconClick="()=> console.log('图标被点击了')"></d-icon>
+  <!-- 旋转45度的图标 -->
+  <d-icon rotate="45"></d-icon>
+
+  <!-- 持续旋转的图标 -->
+  <d-icon spin="true"></d-icon>
+
+  <!-- 旋转并设置颜色和大小 -->
+  <d-icon rotate="90" color="#ff0000" size="32px"></d-icon>
+
+  <!-- 持续旋转的星形图标 -->
+  <d-icon name="star" spin="true" color="#ffcc00"></d-icon>
 </body>
 
 </html>
+
+<script>
+  // 获取星形图标元素
+  const star = document.querySelector('#icon-star');
+  console.log(star);
+
+  let currentColorIndex = 0;
+
+  star.addEventListener('click', () => {
+    console.log('图标被点击了');
+    // 定义一个颜色数组
+    const colors = ['#00ff00', '#ff0000', '#0000ff', '#ffff00', '#ff00ff'];
+    // 轮流选择下一个颜色
+    const nextColor = colors[currentColorIndex];
+    currentColorIndex = (currentColorIndex + 1) % colors.length;
+    star.color = nextColor;
+  });
+
+  // 获取心形图标元素
+  const heart = document.querySelector('#heart-icon');
+  let rotationDegree = 0;
+
+  // 添加点击事件监听器
+  heart.addEventListener('click', () => {
+    console.log('心形图标被点击了');
+    // 每次点击旋转90度
+    rotationDegree = (rotationDegree + 90) % 360;
+    heart.rotate = rotationDegree;
+  });
+</script>

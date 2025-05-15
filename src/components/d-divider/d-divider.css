@@ -1,0 +1,61 @@
+:host {
+	display: block;
+	--divider-color: #bbb;
+	--divider-size: 1px;
+	--divider-margin: 24px 0;
+}
+
+:host(.divider) {
+	position: relative;
+}
+
+:host(.divider-horizontal) {
+	display: block;
+	clear: both;
+	width: 100%;
+	min-width: 100%;
+	height: var(--divider-size);
+	margin: var(--divider-margin);
+}
+
+:host(.divider-vertical) {
+	display: inline-block;
+	height: 1em;
+	margin: 0 8px;
+	vertical-align: middle;
+	width: var(--divider-size);
+}
+
+/* 实线样式 */
+:host(.divider-horizontal.divider-solid) {
+	background-color: var(--divider-color);
+}
+
+:host(.divider-vertical.divider-solid) {
+	background-color: var(--divider-color);
+}
+
+/* 虚线样式 */
+:host(.divider-horizontal.divider-highDensityDashed) {
+	background-color: transparent;
+	background-image: linear-gradient(
+		to right,
+		var(--divider-color),
+		var(--divider-color) 50%,
+		transparent 50%
+	);
+	background-size: 48px var(--divider-size);
+	background-repeat: repeat-x;
+}
+
+/* 点线样式 */
+:host(.divider-horizontal.divider-lowDensityDashed) {
+	background-color: transparent;
+	background-image: linear-gradient(
+		to right,
+		var(--divider-color) 50%,
+		transparent 50%
+	);
+	background-size: 16px var(--divider-size);
+	background-repeat: repeat-x;
+}

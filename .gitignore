@@ -23,8 +23,7 @@ pnpm-debug.log*
 *.sw?
 
 # 排除 www 目录中的构建文件
-www/build/
+www/build
 # 排除自动生成的配置文件
 www/host.config.json
-# 保留 index.html
-# www/index.html
+

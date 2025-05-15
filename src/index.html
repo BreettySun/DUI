@@ -8,27 +8,58 @@
 
   <script type="module" src="/build/dui.esm.js"></script>
   <script nomodule src="/build/dui.js"></script>
+
+  <style>
+    body {
+      /* 不可选中 */
+      user-select: none;
+    }
+  </style>
 </head>
 
 <body>
   <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
+
   <!-- 默认心形图标 -->
-  <d-icon id="heart-icon"></d-icon>
+  <d-icon id="icon-heart"></d-icon>
+
+  <!-- 默认水平分割线 -->
+  <d-divider></d-divider>
 
   <!-- 自定义大小和颜色 -->
-  <d-icon size="32px" color="#ff0000" name="star" id="icon-star"></d-icon>
+  <d-icon size="60px" color="#ff0000" name="star" id="icon-star"></d-icon>
+
+  <!-- 自定义颜色的水平分割线 -->
+  <d-divider color="#ff0000"></d-divider>
 
   <!-- 旋转45度的图标 -->
   <d-icon rotate="45"></d-icon>
 
+  <!-- 垂直分割线 -->
+  <d-divider direction="vertical"></d-divider>
+
   <!-- 持续旋转的图标 -->
   <d-icon spin="true"></d-icon>
 
+  <!-- 虚线分割线 -->
+  <d-divider line-type="highDensityDashed"></d-divider>
+
   <!-- 旋转并设置颜色和大小 -->
-  <d-icon rotate="90" color="#ff0000" size="32px"></d-icon>
+  <d-icon rotate="90" color="#ff0000"></d-icon>
+
+  <!-- 点线分割线 -->
+  <d-divider line-type="lowDensityDashed"></d-divider>
 
   <!-- 持续旋转的星形图标 -->
   <d-icon name="star" spin="true" color="#ffcc00"></d-icon>
+
+  <!-- 自定义粗细的分割线 -->
+  <d-divider size="3px"></d-divider>
+
+  <d-icon name="home"></d-icon>
+
+  <!-- 自定义边距的分割线 -->
+  <d-divider margin="32px 0 0 0"></d-divider>
 </body>
 
 </html>
@@ -51,7 +82,7 @@
   });
 
   // 获取心形图标元素
-  const heart = document.querySelector('#heart-icon');
+  const heart = document.querySelector('#icon-heart');
   let rotationDegree = 0;
 
   // 添加点击事件监听器

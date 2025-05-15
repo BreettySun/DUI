@@ -6,6 +6,28 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface DDivider {
+        /**
+          * 分割线颜色
+         */
+        "color": string;
+        /**
+          * 分割线方向，可选值：horizontal、vertical
+         */
+        "direction": "horizontal" | "vertical";
+        /**
+          * 分割线样式，可选值：solid、dashed、dotted
+         */
+        "lineType": "solid" | "highDensityDashed" | "lowDensityDashed";
+        /**
+          * 分割线边距
+         */
+        "margin": string;
+        /**
+          * 分割线粗细
+         */
+        "size": string;
+    }
     interface DIcon {
         /**
           * 图标颜色
@@ -48,6 +70,12 @@ export interface DIconCustomEvent<T> extends CustomEvent<T> {
     target: HTMLDIconElement;
 }
 declare global {
+    interface HTMLDDividerElement extends Components.DDivider, HTMLStencilElement {
+    }
+    var HTMLDDividerElement: {
+        prototype: HTMLDDividerElement;
+        new (): HTMLDDividerElement;
+    };
     interface HTMLDIconElementEventMap {
         "iconClick": MouseEvent;
     }
@@ -72,11 +100,34 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "d-divider": HTMLDDividerElement;
         "d-icon": HTMLDIconElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface DDivider {
+        /**
+          * 分割线颜色
+         */
+        "color"?: string;
+        /**
+          * 分割线方向，可选值：horizontal、vertical
+         */
+        "direction"?: "horizontal" | "vertical";
+        /**
+          * 分割线样式，可选值：solid、dashed、dotted
+         */
+        "lineType"?: "solid" | "highDensityDashed" | "lowDensityDashed";
+        /**
+          * 分割线边距
+         */
+        "margin"?: string;
+        /**
+          * 分割线粗细
+         */
+        "size"?: string;
+    }
     interface DIcon {
         /**
           * 图标颜色
@@ -118,6 +169,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "d-divider": DDivider;
         "d-icon": DIcon;
         "my-component": MyComponent;
     }
@@ -126,6 +178,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "d-divider": LocalJSX.DDivider & JSXBase.HTMLAttributes<HTMLDDividerElement>;
             "d-icon": LocalJSX.DIcon & JSXBase.HTMLAttributes<HTMLDIconElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }

@@ -27,3 +27,6 @@ www/build
 # 排除自动生成的配置文件
 www/host.config.json
 
+loader
+
+.stencil

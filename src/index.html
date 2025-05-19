@@ -14,82 +14,54 @@
       /* 不可选中 */
       user-select: none;
     }
+
+    .bigBtn::part(button) {
+      width: 100%;
+      background-color: #ff4d4f;
+    }
+
+    .bigBtn::part(button):hover {
+      background-color: #ff7875;
+    }
   </style>
 </head>
 
 <body>
-  <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
 
-  <!-- 默认心形图标 -->
-  <d-icon id="icon-heart"></d-icon>
 
-  <!-- 默认水平分割线 -->
-  <d-divider></d-divider>
+  <!-- 基本使用 -->
+  <d-button>默认按钮</d-button>
 
-  <!-- 自定义大小和颜色 -->
-  <d-icon size="60px" color="#ff0000" name="star" id="icon-star"></d-icon>
+  <!-- 设置类型 -->
+  <d-button type="primary">主要按钮</d-button>
+  <d-button type="secondary">次要按钮</d-button>
+  <d-button type="danger">危险按钮</d-button>
+  <d-button type="text">文本按钮</d-button>
 
-  <!-- 自定义颜色的水平分割线 -->
-  <d-divider color="#ff0000"></d-divider>
+  <!-- 设置尺寸 -->
+  <d-button size="small">小按钮</d-button>
+  <d-button size="medium">中按钮</d-button>
 
-  <!-- 旋转45度的图标 -->
-  <d-icon rotate="45"></d-icon>
+  <d-button size="large" class="bigBtn">
+    大按钮<d-icon name="backspace" color="#fff" size="16px" class="back"></d-icon>
+  </d-button>
 
-  <!-- 垂直分割线 -->
-  <d-divider direction="vertical"></d-divider>
+  <!-- 禁用状态 -->
+  <d-button disabled>禁用按钮</d-button>
 
-  <!-- 持续旋转的图标 -->
-  <d-icon spin="true"></d-icon>
-
-  <!-- 虚线分割线 -->
-  <d-divider line-type="highDensityDashed"></d-divider>
-
-  <!-- 旋转并设置颜色和大小 -->
-  <d-icon rotate="90" color="#ff0000"></d-icon>
-
-  <!-- 点线分割线 -->
-  <d-divider line-type="lowDensityDashed"></d-divider>
-
-  <!-- 持续旋转的星形图标 -->
-  <d-icon name="star" spin="true" color="#ffcc00"></d-icon>
-
-  <!-- 自定义粗细的分割线 -->
-  <d-divider size="3px"></d-divider>
-
-  <d-icon name="home"></d-icon>
-
-  <!-- 自定义边距的分割线 -->
-  <d-divider margin="32px 0 0 0"></d-divider>
+  <!-- 圆形按钮 -->
+  <d-button round type="secondary" id="btn-fav">
+    <d-icon name="heart" color="#fff" size="16px" class="back" id="icon-heart">
+    </d-icon>
+  </d-button>
 </body>
 
 </html>
 
 <script>
-  // 获取星形图标元素
-  const star = document.querySelector('#icon-star');
-  console.log(star);
-
-  let currentColorIndex = 0;
-
-  star.addEventListener('click', () => {
-    console.log('图标被点击了');
-    // 定义一个颜色数组
-    const colors = ['#00ff00', '#ff0000', '#0000ff', '#ffff00', '#ff00ff'];
-    // 轮流选择下一个颜色
-    const nextColor = colors[currentColorIndex];
-    currentColorIndex = (currentColorIndex + 1) % colors.length;
-    star.color = nextColor;
-  });
-
-  // 获取心形图标元素
-  const heart = document.querySelector('#icon-heart');
-  let rotationDegree = 0;
-
-  // 添加点击事件监听器
-  heart.addEventListener('click', () => {
-    console.log('心形图标被点击了');
-    // 每次点击旋转90度
-    rotationDegree = (rotationDegree + 90) % 360;
-    heart.rotate = rotationDegree;
-  });
+  const iconHeart = document.querySelector('#icon-heart');
+  const btnFav = document.querySelector('#btn-fav');
+  btnFav.onclick = () => {
+    iconHeart.color = '#f00';
+  }
 </script>

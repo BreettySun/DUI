@@ -6,6 +6,32 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface DButton {
+        /**
+          * 自定义类名
+         */
+        "customClass": string;
+        /**
+          * 自定义内联样式
+         */
+        "customStyle": { [key: string]: string };
+        /**
+          * 是否禁用
+         */
+        "disabled": boolean;
+        /**
+          * 是否为圆形按钮
+         */
+        "round": boolean;
+        /**
+          * 按钮尺寸
+         */
+        "size": "small" | "medium" | "large";
+        /**
+          * 按钮类型
+         */
+        "type": "primary" | "secondary" | "danger" | "text";
+    }
     interface DDivider {
         /**
           * 分割线颜色
@@ -70,6 +96,12 @@ export interface DIconCustomEvent<T> extends CustomEvent<T> {
     target: HTMLDIconElement;
 }
 declare global {
+    interface HTMLDButtonElement extends Components.DButton, HTMLStencilElement {
+    }
+    var HTMLDButtonElement: {
+        prototype: HTMLDButtonElement;
+        new (): HTMLDButtonElement;
+    };
     interface HTMLDDividerElement extends Components.DDivider, HTMLStencilElement {
     }
     var HTMLDDividerElement: {
@@ -100,12 +132,39 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "d-button": HTMLDButtonElement;
         "d-divider": HTMLDDividerElement;
         "d-icon": HTMLDIconElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface DButton {
+        /**
+          * 自定义类名
+         */
+        "customClass"?: string;
+        /**
+          * 自定义内联样式
+         */
+        "customStyle"?: { [key: string]: string };
+        /**
+          * 是否禁用
+         */
+        "disabled"?: boolean;
+        /**
+          * 是否为圆形按钮
+         */
+        "round"?: boolean;
+        /**
+          * 按钮尺寸
+         */
+        "size"?: "small" | "medium" | "large";
+        /**
+          * 按钮类型
+         */
+        "type"?: "primary" | "secondary" | "danger" | "text";
+    }
     interface DDivider {
         /**
           * 分割线颜色
@@ -169,6 +228,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "d-button": DButton;
         "d-divider": DDivider;
         "d-icon": DIcon;
         "my-component": MyComponent;
@@ -178,6 +238,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "d-button": LocalJSX.DButton & JSXBase.HTMLAttributes<HTMLDButtonElement>;
             "d-divider": LocalJSX.DDivider & JSXBase.HTMLAttributes<HTMLDDividerElement>;
             "d-icon": LocalJSX.DIcon & JSXBase.HTMLAttributes<HTMLDIconElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;

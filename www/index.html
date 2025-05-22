@@ -1,19 +1,40 @@
 <!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"> <title>Stencil Component Starter</title> <script type="module" src="/build/dui.esm.js" data-stencil></script> <script nomodule="" src="/build/dui.js" data-stencil></script> <style>body {
-      /* 不可选中 */
-      user-select: none;
-    }
+				/* 不可选中 */
+				user-select: none;
+			}
 
-    .bigBtn::part(button) {
-      width: 100%;
-      background-color: #ff4d4f;
-    }
+			d-button {
+				margin: 10px;
+				width: 200px;
+			}
 
-    .bigBtn::part(button):hover {
-      background-color: #ff7875;
-    }</style> </head> <body> <!-- 基本使用 --> <d-button>默认按钮</d-button> <!-- 设置类型 --> <d-button type="primary">主要按钮</d-button> <d-button type="secondary">次要按钮</d-button> <d-button type="danger">危险按钮</d-button> <d-button type="text">文本按钮</d-button> <!-- 设置尺寸 --> <d-button size="small">小按钮</d-button> <d-button size="medium">中按钮</d-button> <d-button size="large" class="bigBtn"> 大按钮<d-icon name="backspace" color="#fff" size="16px" class="back"></d-icon> </d-button> <!-- 禁用状态 --> <d-button disabled="">禁用按钮</d-button> <!-- 圆形按钮 --> <d-button round="" type="secondary" id="btn-fav"> <d-icon name="heart" color="#fff" size="16px" class="back" id="icon-heart"></d-icon> </d-button> <script>
-  const iconHeart = document.querySelector('#icon-heart');
-  const btnFav = document.querySelector('#btn-fav');
-  btnFav.onclick = () => {
-    iconHeart.color = '#f00';
-  }
+			.bigBtn::part(button) {
+				width: 100%;
+				background-color: #ff4d4f;
+			}
+
+			.bigBtn::part(button):hover {
+				background-color: #ff7875;
+			}
+
+			.carousel::part(carousel) {
+				width: 500px;
+				height: 300px;
+				background-color: #000;
+				opacity: 0.5;
+			}</style> </head> <body> <!-- 基本使用 --> <d-button>默认按钮</d-button> <!-- 设置类型 --> <d-button type="primary">主要按钮</d-button> <d-button type="secondary">次要按钮</d-button> <d-button type="danger">危险按钮</d-button> <d-button type="text">文本按钮</d-button> <!-- 设置尺寸 --> <d-button size="small">小按钮</d-button> <d-button size="medium">中按钮</d-button> <d-button size="large" class="bigBtn"> 大按钮<d-icon name="backspace" color="#fff" size="16px" class="back"></d-icon> </d-button> <!-- 禁用状态 --> <d-button disabled="">禁用按钮</d-button> <!-- 圆形按钮 --> <d-button round="" type="secondary" id="btn-fav"> <d-icon name="heart" color="#fff" size="16px" class="back" id="icon-heart"></d-icon> </d-button> <d-carousel class="carousel" autoplay="" delay="2000"> <a target="_blank" href="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract01.jpg"> <img src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract01.jpg" alt=""> </a> <a target="_blank" href="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract04.jpg"> <img src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract04.jpg" alt=""> </a> <a target="_blank" href="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract04.jpg"> <img src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract03.jpg" alt=""> </a> </d-carousel> <script>
+	const iconHeart = document.querySelector("#icon-heart");
+	const btnFav = document.querySelector("#btn-fav");
+	btnFav.onclick = () => {
+		iconHeart.color = "#f00";
+	};
+</script><script>
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  // auto-unregister service worker during dev mode
+  navigator.serviceWorker.getRegistration().then(function(registration) {
+    if (registration) {
+      registration.unregister().then(function() { location.reload(true) });
+    }
+  });
+}
 </script></body></html>

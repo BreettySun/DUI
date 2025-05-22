@@ -32,6 +32,10 @@ export namespace Components {
          */
         "type": "primary" | "secondary" | "danger" | "text";
     }
+    interface DCarousel {
+        "autoplay": boolean;
+        "delay": number;
+    }
     interface DDivider {
         /**
           * 分割线颜色
@@ -102,6 +106,12 @@ declare global {
         prototype: HTMLDButtonElement;
         new (): HTMLDButtonElement;
     };
+    interface HTMLDCarouselElement extends Components.DCarousel, HTMLStencilElement {
+    }
+    var HTMLDCarouselElement: {
+        prototype: HTMLDCarouselElement;
+        new (): HTMLDCarouselElement;
+    };
     interface HTMLDDividerElement extends Components.DDivider, HTMLStencilElement {
     }
     var HTMLDDividerElement: {
@@ -133,6 +143,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "d-button": HTMLDButtonElement;
+        "d-carousel": HTMLDCarouselElement;
         "d-divider": HTMLDDividerElement;
         "d-icon": HTMLDIconElement;
         "my-component": HTMLMyComponentElement;
@@ -164,6 +175,10 @@ declare namespace LocalJSX {
           * 按钮类型
          */
         "type"?: "primary" | "secondary" | "danger" | "text";
+    }
+    interface DCarousel {
+        "autoplay"?: boolean;
+        "delay"?: number;
     }
     interface DDivider {
         /**
@@ -229,6 +244,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "d-button": DButton;
+        "d-carousel": DCarousel;
         "d-divider": DDivider;
         "d-icon": DIcon;
         "my-component": MyComponent;
@@ -239,6 +255,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "d-button": LocalJSX.DButton & JSXBase.HTMLAttributes<HTMLDButtonElement>;
+            "d-carousel": LocalJSX.DCarousel & JSXBase.HTMLAttributes<HTMLDCarouselElement>;
             "d-divider": LocalJSX.DDivider & JSXBase.HTMLAttributes<HTMLDDividerElement>;
             "d-icon": LocalJSX.DIcon & JSXBase.HTMLAttributes<HTMLDIconElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;

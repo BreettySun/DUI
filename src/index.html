@@ -36,10 +36,14 @@
                 background-color: #ff7875;
             }
 
+            .bigBtn d-icon {
+                margin-left: 10px;
+            }
+
             /* 设置轮播图容器样式 */
             d-carousel {
                 width: 400px;
-                height: 280px;
+                height: 260px;
                 margin: 0 auto;
             }
 
@@ -60,10 +64,14 @@
 
     <body>
         <!-- 基本使用 -->
-        <d-button>默认按钮</d-button>
+        <d-button id="open-drawer">Open drawer</d-button>
 
         <!-- 设置类型 -->
-        <d-button type="primary">主要按钮</d-button>
+        <d-button
+            type="primary"
+            style="margin-left: 100px">
+            主要按钮
+        </d-button>
         <d-button type="secondary">次要按钮</d-button>
         <d-button type="danger">危险按钮</d-button>
         <d-button type="text">文本按钮</d-button>
@@ -75,7 +83,8 @@
         <d-button
             size="large"
             class="bigBtn">
-            大按钮<d-icon
+            大按钮
+            <d-icon
                 name="backspace"
                 color="#fff"
                 size="16px"
@@ -126,6 +135,17 @@
                     alt="" />
             </a>
         </d-carousel>
+
+        <d-drawer
+            header="Drawer Header"
+            id="drawer"
+            show-header>
+            <div>
+                <p>Drawer Content</p>
+                <p>Drawer Content</p>
+                <p>Drawer Content</p>
+            </div>
+        </d-drawer>
     </body>
 </html>
 
@@ -134,5 +154,11 @@
     const btnFav = document.querySelector("#btn-fav");
     btnFav.onclick = () => {
         iconHeart.color = "#f00";
+    };
+
+    const openDrawer = document.querySelector("#open-drawer");
+    openDrawer.onclick = () => {
+        const drawer = document.querySelector("#drawer");
+        drawer.open();
     };
 </script>

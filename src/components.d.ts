@@ -33,9 +33,31 @@ export namespace Components {
         "type": "primary" | "secondary" | "danger" | "text";
     }
     interface DCarousel {
+        /**
+          * 是否自动播放
+         */
         "autoplay": boolean;
+        /**
+          * 自动播放间隔时间（毫秒）
+         */
         "delay": number;
+        /**
+          * 手动切换到指定索引的幻灯片
+          * @param index 幻灯片索引
+         */
+        "goToSlide": (index: number) => Promise<void>;
+        /**
+          * 指示器位置，可选值：top、bottom、left、right
+         */
         "indicatorPosition": "top" | "bottom" | "left" | "right";
+        /**
+          * 手动切换到下一张幻灯片
+         */
+        "nextSlide": () => Promise<void>;
+        /**
+          * 手动切换到上一张幻灯片
+         */
+        "prevSlide": () => Promise<void>;
     }
     interface DDivider {
         /**
@@ -59,6 +81,16 @@ export namespace Components {
          */
         "size": string;
     }
+    interface DDrawer {
+        "close": () => Promise<void>;
+        "header": string;
+        "maskClosable": boolean;
+        "open": () => Promise<void>;
+        "placement": string;
+        "showHeader": boolean;
+        "visible": Boolean;
+        "width": string;
+    }
     interface DIcon {
         /**
           * 图标颜色
@@ -81,20 +113,10 @@ export namespace Components {
          */
         "spin": boolean;
     }
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
-    }
+}
+export interface DDrawerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDDrawerElement;
 }
 export interface DIconCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -119,6 +141,23 @@ declare global {
         prototype: HTMLDDividerElement;
         new (): HTMLDDividerElement;
     };
+    interface HTMLDDrawerElementEventMap {
+        "closed": any;
+    }
+    interface HTMLDDrawerElement extends Components.DDrawer, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDDrawerElementEventMap>(type: K, listener: (this: HTMLDDrawerElement, ev: DDrawerCustomEvent<HTMLDDrawerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDDrawerElementEventMap>(type: K, listener: (this: HTMLDDrawerElement, ev: DDrawerCustomEvent<HTMLDDrawerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDDrawerElement: {
+        prototype: HTMLDDrawerElement;
+        new (): HTMLDDrawerElement;
+    };
     interface HTMLDIconElementEventMap {
         "iconClick": MouseEvent;
     }
@@ -136,18 +175,12 @@ declare global {
         prototype: HTMLDIconElement;
         new (): HTMLDIconElement;
     };
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
-    }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
-    };
     interface HTMLElementTagNameMap {
         "d-button": HTMLDButtonElement;
         "d-carousel": HTMLDCarouselElement;
         "d-divider": HTMLDDividerElement;
+        "d-drawer": HTMLDDrawerElement;
         "d-icon": HTMLDIconElement;
-        "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
@@ -178,8 +211,17 @@ declare namespace LocalJSX {
         "type"?: "primary" | "secondary" | "danger" | "text";
     }
     interface DCarousel {
+        /**
+          * 是否自动播放
+         */
         "autoplay"?: boolean;
+        /**
+          * 自动播放间隔时间（毫秒）
+         */
         "delay"?: number;
+        /**
+          * 指示器位置，可选值：top、bottom、left、right
+         */
         "indicatorPosition"?: "top" | "bottom" | "left" | "right";
     }
     interface DDivider {
@@ -203,6 +245,15 @@ declare namespace LocalJSX {
           * 分割线粗细
          */
         "size"?: string;
+    }
+    interface DDrawer {
+        "header"?: string;
+        "maskClosable"?: boolean;
+        "onClosed"?: (event: DDrawerCustomEvent<any>) => void;
+        "placement"?: string;
+        "showHeader"?: boolean;
+        "visible"?: Boolean;
+        "width"?: string;
     }
     interface DIcon {
         /**
@@ -230,26 +281,12 @@ declare namespace LocalJSX {
          */
         "spin"?: boolean;
     }
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
-    }
     interface IntrinsicElements {
         "d-button": DButton;
         "d-carousel": DCarousel;
         "d-divider": DDivider;
+        "d-drawer": DDrawer;
         "d-icon": DIcon;
-        "my-component": MyComponent;
     }
 }
 export { LocalJSX as JSX };
@@ -259,8 +296,8 @@ declare module "@stencil/core" {
             "d-button": LocalJSX.DButton & JSXBase.HTMLAttributes<HTMLDButtonElement>;
             "d-carousel": LocalJSX.DCarousel & JSXBase.HTMLAttributes<HTMLDCarouselElement>;
             "d-divider": LocalJSX.DDivider & JSXBase.HTMLAttributes<HTMLDDividerElement>;
+            "d-drawer": LocalJSX.DDrawer & JSXBase.HTMLAttributes<HTMLDDrawerElement>;
             "d-icon": LocalJSX.DIcon & JSXBase.HTMLAttributes<HTMLDIconElement>;
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
 }

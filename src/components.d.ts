@@ -35,6 +35,7 @@ export namespace Components {
     interface DCarousel {
         "autoplay": boolean;
         "delay": number;
+        "indicatorPosition": "top" | "bottom" | "left" | "right";
     }
     interface DDivider {
         /**
@@ -179,6 +180,7 @@ declare namespace LocalJSX {
     interface DCarousel {
         "autoplay"?: boolean;
         "delay"?: number;
+        "indicatorPosition"?: "top" | "bottom" | "left" | "right";
     }
     interface DDivider {
         /**

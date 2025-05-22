@@ -1,3 +1,130 @@
 :host {
-	display: block;
+    display: block;
+    position: relative;
+}
+
+.carousel-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 箭头控制按钮基本样式 */
+.carousel-controls {
+    position: absolute;
+    z-index: 10;
+}
+
+.arrow-control {
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 0;
+}
+
+.arrow-control:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* 水平箭头位置 */
+:host([indicator-position="top"]) .carousel-controls,
+:host([indicator-position="bottom"]) .carousel-controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 10px;
+}
+
+/* 垂直箭头位置 */
+:host([indicator-position="left"]) .carousel-controls,
+:host([indicator-position="right"]) .carousel-controls {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    top: 0;
+    padding: 10px 0;
+}
+
+:host([indicator-position="left"]) .carousel-controls {
+    right: 10px;
+}
+
+:host([indicator-position="right"]) .carousel-controls {
+    left: 10px;
+}
+
+:host([indicator-position="top"]) .carousel-controls {
+    bottom: 10px;
+}
+
+:host([indicator-position="bottom"]) .carousel-controls {
+    top: 10px;
+}
+
+/* 指示器基本样式 */
+.carousel-indicators {
+    display: flex;
+    position: absolute;
+    z-index: 10;
+}
+
+/* 水平指示器 */
+.carousel-indicators-top,
+.carousel-indicators-bottom {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    left: 0; /* 确保水平居中 */
+}
+
+.carousel-indicators-top {
+    top: 10px;
+}
+
+.carousel-indicators-bottom {
+    bottom: 10px;
+}
+
+/* 垂直指示器 */
+.carousel-indicators-left,
+.carousel-indicators-right {
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    top: 0; /* 确保垂直居中 */
+}
+
+.carousel-indicators-left {
+    left: 10px;
+}
+
+.carousel-indicators-right {
+    right: 10px;
+}
+
+/* 指示器点样式 */
+.indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.indicator.active {
+    background-color: white;
 }

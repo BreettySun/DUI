@@ -1,5 +1,5 @@
-import { B as BUILD, c as consoleDevInfo, H, w as win, N as NAMESPACE, p as promiseResolve, b as bootstrapLazy } from './index-9D1mSWgs.js';
-export { s as setNonce } from './index-9D1mSWgs.js';
+import { B as BUILD, c as consoleDevInfo, H, w as win, N as NAMESPACE, p as promiseResolve, b as bootstrapLazy } from './index-BZL-ut0-.js';
+export { s as setNonce } from './index-BZL-ut0-.js';
 import { g as globalScripts } from './app-globals-DQuL1Twl.js';
 
 /*
@@ -44,7 +44,7 @@ var patchCloneNodeFix = (HTMLElementPrototype) => {
 
 patchBrowser().then(async (options) => {
   await globalScripts();
-  return bootstrapLazy([["d-button",[[1,"d-button",{"type":[1],"size":[1],"disabled":[4],"round":[4],"customClass":[1,"custom-class"],"customStyle":[16,"custom-style"]}]]],["d-carousel",[[1,"d-carousel",{"autoplay":[4],"delay":[2],"currentIndex":[32]}]]],["d-divider",[[1,"d-divider",{"direction":[1],"color":[1],"size":[1],"lineType":[1,"line-type"],"margin":[1]}]]],["d-icon",[[1,"d-icon",{"name":[1],"size":[1],"color":[1],"rotate":[2],"spin":[4]}]]],["my-component",[[1,"my-component",{"first":[1],"middle":[1],"last":[1]}]]]], options);
+  return bootstrapLazy([["d-carousel",[[1,"d-carousel",{"autoplay":[4],"delay":[2],"indicatorPosition":[1,"indicator-position"],"currentIndex":[32],"itemsCount":[32]},null,{"autoplay":["autoplayChanged"]}]]],["d-button",[[1,"d-button",{"type":[1],"size":[1],"disabled":[4],"round":[4],"customClass":[1,"custom-class"],"customStyle":[16,"custom-style"]}]]],["d-divider",[[1,"d-divider",{"direction":[1],"color":[1],"size":[1],"lineType":[1,"line-type"],"margin":[1]}]]],["my-component",[[1,"my-component",{"first":[1],"middle":[1],"last":[1]}]]],["d-icon",[[1,"d-icon",{"name":[1],"size":[1],"color":[1],"rotate":[2],"spin":[4]}]]]], options);
 });
 //# sourceMappingURL=dui.esm.js.map
 

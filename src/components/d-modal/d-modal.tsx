@@ -1,12 +1,11 @@
 import {
     Component,
-    Host,
-    h,
-    Prop,
-    State,
-    Watch,
     Event,
     EventEmitter,
+    Host,
+    Method,
+    Prop,
+    h,
 } from "@stencil/core";
 
 @Component({
@@ -15,104 +14,153 @@ import {
     shadow: true,
 })
 export class DModal {
-    @Prop() visible: boolean = false;
-    @Prop() title: string = "";
-    @Prop() width: string = "520px";
-    @Prop() showClose: boolean = true;
-    @Prop() maskClosable: boolean = true;
-    @Prop() confirmText: string = "确定";
-    @Prop() cancelText: string = "取消";
-    @Prop() showFooter: boolean = true;
+    @Prop({
+        attribute: "show",
+        mutable: true,
+        reflect: true,
+    })
+    show: boolean = false;
 
-    @State() isVisible: boolean = false;
-    @State() isAnimating: boolean = false;
+    @Prop()
+    width: string = "520px";
 
-    @Event() onClose: EventEmitter<void>;
-    @Event() onConfirm: EventEmitter<void>;
-    @Event() onCancel: EventEmitter<void>;
+    @Prop({
+        attribute: "show-header",
+        mutable: true,
+        reflect: true,
+    })
+    showHeader: boolean = true;
 
-    @Watch("visible")
-    watchVisible(newValue: boolean) {
-        if (newValue) {
-            this.isVisible = true;
-            this.isAnimating = true;
-            setTimeout(() => {
-                this.isAnimating = false;
-            }, 300);
+    @Prop({
+        attribute: "header",
+    })
+    header: string = "";
+
+    @Prop({
+        attribute: "mask-closable",
+        mutable: true,
+        reflect: true,
+    })
+    maskClosable: boolean = true;
+
+    @Prop({
+        attribute: "show-footer",
+        mutable: true,
+        reflect: true,
+    })
+    showFooter: boolean = true;
+
+    @Prop({
+        attribute: "confirm-text",
+    })
+    confirmText: string = "确定";
+
+    @Prop({
+        attribute: "cancel-text",
+    })
+    cancelText: string = "取消";
+
+    renderHeader() {
+        if (this.showHeader) {
+            return (
+                <div class="ivy-modal-header">
+                    <div class="ivy-modal-title">
+                        <slot name="header">{this.header}</slot>
+                    </div>
+                    <div
+                        class="ivy-modal-close"
+                        onClick={this.close.bind(this)}>
+                        ×
+                    </div>
+                </div>
+            );
         } else {
-            this.isAnimating = true;
-            setTimeout(() => {
-                this.isVisible = false;
-                this.isAnimating = false;
-            }, 300);
+            return null;
         }
     }
 
-    private handleClose = () => {
-        this.onClose.emit();
-    };
-
-    private handleConfirm = () => {
-        this.onConfirm.emit();
-    };
-
-    private handleCancel = () => {
-        this.onCancel.emit();
-    };
-
-    private handleMaskClick = () => {
-        if (this.maskClosable) {
-            this.handleClose();
-        }
-    };
-
-    render() {
-        if (!this.isVisible) {
+    renderFooter() {
+        if (this.showFooter) {
+            return (
+                <div class="ivy-modal-footer">
+                    <button
+                        class="ivy-modal-btn ivy-modal-btn-cancel"
+                        onClick={this.cancel.bind(this)}>
+                        {this.cancelText}
+                    </button>
+                    <button
+                        class="ivy-modal-btn ivy-modal-btn-confirm"
+                        onClick={this.confirm.bind(this)}>
+                        {this.confirmText}
+                    </button>
+                </div>
+            );
+        } else {
             return null;
         }
+    }
 
+    render() {
         return (
-            <Host>
+            <Host show={this.show}>
                 <div
-                    class={`modal-mask ${
-                        this.isAnimating ? "modal-mask-enter" : ""
-                    }`}
-                    onClick={this.handleMaskClick}>
-                    <div
-                        class={`modal-container ${
-                            this.isAnimating ? "modal-container-enter" : ""
-                        }`}
-                        style={{ width: this.width }}>
-                        <div class="modal-header">
-                            <div class="modal-title">{this.title}</div>
-                            {this.showClose && (
-                                <div
-                                    class="modal-close"
-                                    onClick={this.handleClose}>
-                                    ×
-                                </div>
-                            )}
-                        </div>
-                        <div class="modal-content">
-                            <slot></slot>
-                        </div>
-                        {this.showFooter && (
-                            <div class="modal-footer">
-                                <button
-                                    class="modal-btn modal-btn-cancel"
-                                    onClick={this.handleCancel}>
-                                    {this.cancelText}
-                                </button>
-                                <button
-                                    class="modal-btn modal-btn-confirm"
-                                    onClick={this.handleConfirm}>
-                                    {this.confirmText}
-                                </button>
-                            </div>
-                        )}
+                    class="ivy-mask"
+                    onClick={this.maskClose.bind(this)}></div>
+                <div
+                    class="ivy-modal"
+                    style={{ width: this.width }}>
+                    {this.renderHeader()}
+                    <div class="ivy-modal-body">
+                        <slot></slot>
                     </div>
+                    {this.renderFooter()}
                 </div>
             </Host>
         );
+    }
+
+    @Event() onClose: EventEmitter;
+    @Event() onConfirm: EventEmitter;
+    @Event() onCancel: EventEmitter;
+
+    closeHandler() {
+        this.onClose.emit();
+    }
+
+    confirmHandler() {
+        this.onConfirm.emit();
+    }
+
+    cancelHandler() {
+        this.onCancel.emit();
+    }
+
+    @Method()
+    async open() {
+        this.show = true;
+    }
+
+    @Method()
+    async close() {
+        this.closeHandler();
+        this.show = false;
+    }
+
+    @Method()
+    async confirm() {
+        this.confirmHandler();
+        this.show = false;
+    }
+
+    @Method()
+    async cancel() {
+        this.cancelHandler();
+        this.show = false;
+    }
+
+    maskClose() {
+        if (this.maskClosable) {
+            this.show = false;
+        }
     }
 }

@@ -1,6 +1,6 @@
 import { r as registerInstance, d as createEvent, h, a as Host } from './index-B30K5aI-.js';
 
-const dModalCss = ":host{display:block}.modal-mask{position:fixed;top:0;left:0;right:0;bottom:0;background-color:rgba(0, 0, 0, 0.5);display:flex;justify-content:center;align-items:center;z-index:1000;opacity:0;transition:opacity 0.3s ease-in-out}.modal-mask-enter{opacity:1}.modal-container{background:#fff;border-radius:4px;box-shadow:0 4px 12px rgba(0, 0, 0, 0.15);transform:scale(0.5);opacity:0;transition:all 0.3s ease-in-out}.modal-container-enter{transform:scale(1);opacity:1}.modal-header{padding:16px 24px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center}.modal-title{font-size:16px;font-weight:500;color:rgba(0, 0, 0, 0.85)}.modal-close{font-size:20px;color:rgba(0, 0, 0, 0.45);cursor:pointer;transition:color 0.3s}.modal-close:hover{color:rgba(0, 0, 0, 0.85)}.modal-content{padding:24px;max-height:calc(100vh - 200px);overflow-y:auto}.modal-footer{padding:10px 24px;border-top:1px solid #f0f0f0;text-align:right}.modal-btn{padding:4px 15px;font-size:14px;border-radius:2px;cursor:pointer;transition:all 0.3s;margin-left:8px;border:1px solid transparent}.modal-btn-cancel{background:#fff;border-color:#d9d9d9;color:rgba(0, 0, 0, 0.65)}.modal-btn-cancel:hover{color:#40a9ff;border-color:#40a9ff}.modal-btn-confirm{background:#1890ff;border-color:#1890ff;color:#fff}.modal-btn-confirm:hover{background:#40a9ff;border-color:#40a9ff}";
+const dModalCss = ":host{position:fixed;left:0;top:0;z-index:8000;width:100vw;height:100vh;display:none;overflow:hidden;transition:all 0.3s}.ivy-mask{position:absolute;left:0;top:0;z-index:-1;width:100%;height:100%;background-color:var(--ivy-mask-color, rgba(55, 55, 55, 0.6))}.ivy-modal{position:absolute;left:50%;top:50%;transform:translate(-50%, -50%) scale(0.5);z-index:1;background-color:#ffffff;border-radius:4px;box-shadow:0 4px 12px rgba(0, 0, 0, 0.15);opacity:0;transition:all 0.3s ease-in-out}:host([show]){display:block}:host([show]) .ivy-modal{transform:translate(-50%, -50%) scale(1);opacity:1}.ivy-modal-header{padding:16px 24px;border-bottom:1px solid var(--ivy-border-color, #dcdfe6);display:none}:host([show-header]) .ivy-modal-header{display:flex;justify-content:space-between;align-items:center}.ivy-modal-title{font-size:16px;font-weight:500;color:rgba(0, 0, 0, 0.85)}.ivy-modal-close{font-size:20px;color:rgba(0, 0, 0, 0.45);cursor:pointer;transition:color 0.3s}.ivy-modal-close:hover{color:rgba(0, 0, 0, 0.85)}.ivy-modal-body{padding:24px;max-height:calc(100vh - 200px);overflow-y:auto}.ivy-modal-footer{padding:10px 24px;border-top:1px solid var(--ivy-border-color, #dcdfe6);text-align:right;display:none}:host([show-footer]) .ivy-modal-footer{display:block}.ivy-modal-btn{padding:4px 15px;font-size:14px;border-radius:2px;cursor:pointer;transition:all 0.3s;margin-left:8px;border:1px solid transparent}.ivy-modal-btn-cancel{background:#fff;border-color:#d9d9d9;color:rgba(0, 0, 0, 0.65)}.ivy-modal-btn-cancel:hover{color:#40a9ff;border-color:#40a9ff}.ivy-modal-btn-confirm{background:#1890ff;border-color:#1890ff;color:#fff}.ivy-modal-btn-confirm:hover{background:#40a9ff;border-color:#40a9ff}";
 
 const DModal = class {
     constructor(hostRef) {
@@ -9,58 +9,65 @@ const DModal = class {
         this.onConfirm = createEvent(this, "onConfirm", 7);
         this.onCancel = createEvent(this, "onCancel", 7);
     }
-    visible = false;
-    title = "";
+    show = false;
     width = "520px";
-    showClose = true;
+    showHeader = true;
+    header = "";
     maskClosable = true;
+    showFooter = true;
     confirmText = "确定";
     cancelText = "取消";
-    showFooter = true;
-    isVisible = false;
-    isAnimating = false;
+    renderHeader() {
+        if (this.showHeader) {
+            return (h("div", { class: "ivy-modal-header" }, h("div", { class: "ivy-modal-title" }, h("slot", { name: "header" }, this.header)), h("div", { class: "ivy-modal-close", onClick: this.close.bind(this) }, "\u00D7")));
+        }
+        else {
+            return null;
+        }
+    }
+    renderFooter() {
+        if (this.showFooter) {
+            return (h("div", { class: "ivy-modal-footer" }, h("button", { class: "ivy-modal-btn ivy-modal-btn-cancel", onClick: this.cancel.bind(this) }, this.cancelText), h("button", { class: "ivy-modal-btn ivy-modal-btn-confirm", onClick: this.confirm.bind(this) }, this.confirmText)));
+        }
+        else {
+            return null;
+        }
+    }
+    render() {
+        return (h(Host, { key: '4185040598dbbdeb89db20b5d463fbdb1e40351a', show: this.show }, h("div", { key: '24b1f502ce745106bad3896d1a25008765ab8669', class: "ivy-mask", onClick: this.maskClose.bind(this) }), h("div", { key: 'feace9ded20cf20b948ed8f7de5735efdc783c8c', class: "ivy-modal", style: { width: this.width } }, this.renderHeader(), h("div", { key: 'efdb28b3d90c2371c436ef13b04d85d332d14278', class: "ivy-modal-body" }, h("slot", { key: '6f4935eda18650ec314cc84c7de57f0117917abd' })), this.renderFooter())));
+    }
     onClose;
     onConfirm;
     onCancel;
-    watchVisible(newValue) {
-        if (newValue) {
-            this.isVisible = true;
-            this.isAnimating = true;
-            setTimeout(() => {
-                this.isAnimating = false;
-            }, 300);
-        }
-        else {
-            this.isAnimating = true;
-            setTimeout(() => {
-                this.isVisible = false;
-                this.isAnimating = false;
-            }, 300);
-        }
-    }
-    handleClose = () => {
+    closeHandler() {
         this.onClose.emit();
-    };
-    handleConfirm = () => {
-        this.onConfirm.emit();
-    };
-    handleCancel = () => {
-        this.onCancel.emit();
-    };
-    handleMaskClick = () => {
-        if (this.maskClosable) {
-            this.handleClose();
-        }
-    };
-    render() {
-        if (!this.isVisible) {
-            return null;
-        }
-        return (h(Host, null, h("div", { class: `modal-mask ${this.isAnimating ? "modal-mask-enter" : ""}`, onClick: this.handleMaskClick }, h("div", { class: `modal-container ${this.isAnimating ? "modal-container-enter" : ""}`, style: { width: this.width } }, h("div", { class: "modal-header" }, h("div", { class: "modal-title" }, this.title), this.showClose && (h("div", { class: "modal-close", onClick: this.handleClose }, "\u00D7"))), h("div", { class: "modal-content" }, h("slot", null)), this.showFooter && (h("div", { class: "modal-footer" }, h("button", { class: "modal-btn modal-btn-cancel", onClick: this.handleCancel }, this.cancelText), h("button", { class: "modal-btn modal-btn-confirm", onClick: this.handleConfirm }, this.confirmText)))))));
     }
-    static get watchers() { return {
-        "visible": ["watchVisible"]
-    }; }
+    confirmHandler() {
+        this.onConfirm.emit();
+    }
+    cancelHandler() {
+        this.onCancel.emit();
+    }
+    async open() {
+        this.show = true;
+    }
+    async close() {
+        this.closeHandler();
+        this.show = false;
+    }
+    async confirm() {
+        this.confirmHandler();
+        this.show = false;
+    }
+    async cancel() {
+        this.cancelHandler();
+        this.show = false;
+    }
+    maskClose() {
+        if (this.maskClosable) {
+            this.show = false;
+        }
+    }
 };
 DModal.style = dModalCss;
 

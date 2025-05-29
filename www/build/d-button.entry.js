@@ -40,7 +40,7 @@ const DButton = class {
             [this.customClass]: !!this.customClass,
         };
         // 允许外部传递style和class
-        return (h(Host, { key: '21eb418112d02918a14578f9b358483128365702' }, h("button", { key: '54eb38d3eac32b349aa8593ba05b4638c7875d4b', class: classes, disabled: this.disabled, style: this.customStyle, part: "button" }, h("slot", { key: '9db3e66e9bdbbe3931f73cb2b4f0c727a8b8542b' }))));
+        return (h(Host, { key: '0032b48f8e7d2fa35be4bdd5366af07526489edd' }, h("button", { key: 'c9a8ea2d7e376573521e53ae51fa9fa1e8917f5c', class: classes, disabled: this.disabled, style: this.customStyle, part: "button" }, h("slot", { key: 'b7be040377305b3eac301a107429ade523770a59' }))));
     }
 };
 DButton.style = dButtonCss;

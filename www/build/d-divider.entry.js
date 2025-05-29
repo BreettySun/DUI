@@ -27,7 +27,7 @@ const DDivider = class {
      */
     margin = "24px 0";
     render() {
-        return (h(Host, { key: '5b86c36bfab05d62ac465bdea61956c8a6219985', style: {
+        return (h(Host, { key: 'bdef43f5c3d2c7ce907fc8e0acc2ce94b2d5fbeb', style: {
                 "--divider-color": this.color,
                 "--divider-size": this.size,
                 "--divider-margin": this.margin,
@@ -35,7 +35,7 @@ const DDivider = class {
                 divider: true,
                 [`divider-${this.direction}`]: true,
                 [`divider-${this.lineType}`]: true,
-            } }, h("slot", { key: 'c5d25221c1e17ea3e7c1aee33fb0fd7cab5d68a4' })));
+            } }, h("slot", { key: '44d568ebf1084b3b8b545ba87c5c2552df4de3f0' })));
     }
 };
 DDivider.style = dDividerCss;

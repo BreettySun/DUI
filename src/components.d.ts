@@ -114,13 +114,17 @@ export namespace Components {
         "spin": boolean;
     }
     interface DModal {
+        "cancel": () => Promise<void>;
         "cancelText": string;
+        "close": () => Promise<void>;
+        "confirm": () => Promise<void>;
         "confirmText": string;
+        "header": string;
         "maskClosable": boolean;
-        "showClose": boolean;
+        "open": () => Promise<void>;
+        "show": boolean;
         "showFooter": boolean;
-        "title": string;
-        "visible": boolean;
+        "showHeader": boolean;
         "width": string;
     }
 }
@@ -190,9 +194,9 @@ declare global {
         new (): HTMLDIconElement;
     };
     interface HTMLDModalElementEventMap {
-        "onClose": void;
-        "onConfirm": void;
-        "onCancel": void;
+        "onClose": any;
+        "onConfirm": any;
+        "onCancel": any;
     }
     interface HTMLDModalElement extends Components.DModal, HTMLStencilElement {
         addEventListener<K extends keyof HTMLDModalElementEventMap>(type: K, listener: (this: HTMLDModalElement, ev: DModalCustomEvent<HTMLDModalElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -318,14 +322,14 @@ declare namespace LocalJSX {
     interface DModal {
         "cancelText"?: string;
         "confirmText"?: string;
+        "header"?: string;
         "maskClosable"?: boolean;
-        "onOnCancel"?: (event: DModalCustomEvent<void>) => void;
-        "onOnClose"?: (event: DModalCustomEvent<void>) => void;
-        "onOnConfirm"?: (event: DModalCustomEvent<void>) => void;
-        "showClose"?: boolean;
+        "onOnCancel"?: (event: DModalCustomEvent<any>) => void;
+        "onOnClose"?: (event: DModalCustomEvent<any>) => void;
+        "onOnConfirm"?: (event: DModalCustomEvent<any>) => void;
+        "show"?: boolean;
         "showFooter"?: boolean;
-        "title"?: string;
-        "visible"?: boolean;
+        "showHeader"?: boolean;
         "width"?: string;
     }
     interface IntrinsicElements {

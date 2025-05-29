@@ -489,6 +489,72 @@
             </div>
         </div>
 
+        <!-- 对话框组件 -->
+        <div class="section">
+            <h2 class="section-title">对话框组件 (d-modal)</h2>
+
+            <h3>基本用法</h3>
+            <d-button id="open-modal">打开对话框</d-button>
+            <d-modal
+                id="modal"
+                header="对话框标题"
+                show-header
+                show-footer>
+                <p>这是对话框的内容。</p>
+                <p>您可以在这里放置任何内容。</p>
+            </d-modal>
+
+            <div class="code-block">
+                &lt;d-button id="open-modal"&gt;打开对话框&lt;/d-button&gt;<br />
+                &lt;d-modal id="modal" header="对话框标题" show-header
+                show-footer&gt;<br />
+                &lt;p&gt;这是对话框的内容。&lt;/p&gt;<br />
+                &lt;p&gt;您可以在这里放置任何内容。&lt;/p&gt;<br />
+                &lt;/d-modal&gt;
+            </div>
+
+            <h3>自定义按钮文本</h3>
+            <d-button id="open-modal-custom">打开自定义对话框</d-button>
+            <d-modal
+                id="modal-custom"
+                header="自定义对话框"
+                confirm-text="好的"
+                cancel-text="算了"
+                show-header
+                show-footer>
+                <p>这是一个自定义按钮文本的对话框。</p>
+            </d-modal>
+
+            <div class="code-block">
+                &lt;d-button
+                id="open-modal-custom"&gt;打开自定义对话框&lt;/d-button&gt;<br />
+                &lt;d-modal id="modal-custom" header="自定义对话框"
+                confirm-text="好的" cancel-text="算了" show-header
+                show-footer&gt;<br />
+                &lt;p&gt;这是一个自定义按钮文本的对话框。&lt;/p&gt;<br />
+                &lt;/d-modal&gt;
+            </div>
+
+            <h3>无底部按钮</h3>
+            <d-button id="open-modal-no-footer">打开无底部按钮对话框</d-button>
+            <d-modal
+                id="modal-no-footer"
+                header="无底部按钮对话框"
+                show-header
+                show-footer="false">
+                <p>这是一个没有底部按钮的对话框。</p>
+            </d-modal>
+
+            <div class="code-block">
+                &lt;d-button
+                id="open-modal-no-footer"&gt;打开无底部按钮对话框&lt;/d-button&gt;<br />
+                &lt;d-modal id="modal-no-footer" header="无底部按钮对话框"
+                show-header show-footer="false"&gt;<br />
+                &lt;p&gt;这是一个没有底部按钮的对话框。&lt;/p&gt;<br />
+                &lt;/d-modal&gt;
+            </div>
+        </div>
+
         <!-- 分割线组件 -->
         <div class="section">
             <h2 class="section-title">分割线组件 (d-divider)</h2>
@@ -513,4 +579,39 @@
         const drawer = document.querySelector("#drawer");
         drawer.open();
     };
+
+    // 对话框事件处理
+    const openModal = document.querySelector("#open-modal");
+    openModal.onclick = () => {
+        const modal = document.querySelector("#modal");
+        console.log("modal");
+        modal.open();
+    };
+
+    const openModalCustom = document.querySelector("#open-modal-custom");
+    openModalCustom.onclick = () => {
+        const modal = document.querySelector("#modal-custom");
+        console.log("modal");
+        modal.open();
+    };
+
+    const openModalNoFooter = document.querySelector("#open-modal-no-footer");
+    openModalNoFooter.onclick = () => {
+        const modal = document.querySelector("#modal-no-footer");
+        console.log("modal");
+        modal.open();
+    };
+
+    // 监听对话框事件
+    document.querySelector("#modal").addEventListener("onClose", () => {
+        console.log("对话框已关闭");
+    });
+
+    document.querySelector("#modal").addEventListener("onConfirm", () => {
+        console.log("点击了确认按钮");
+    });
+
+    document.querySelector("#modal").addEventListener("onCancel", () => {
+        console.log("点击了取消按钮");
+    });
 </script>

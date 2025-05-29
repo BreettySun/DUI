@@ -131,7 +131,7 @@ const DCarousel = class {
                 height: "100%",
             });
         }
-        return (h(Host, { key: '57fbc88eb15df5325350658d090379eaf0d62d4f' }, h("div", { key: 'fed9cb1c0da1b8449e21433a8abd928c10582ae4', class: "carousel-container", part: "carousel" }, h("slot", { key: '9ee385d31a7d40beda29aad7a23b8b1d9a8c0b69' })), this.itemsCount > 0 && (h("div", { key: 'fadb869407c82208b0b4c78e63f041b59d9090b7', class: "carousel-indicators", part: "indicators", style: {
+        return (h(Host, { key: '07a025fbb0f51f5075db213b33761db2d3dfa1b0' }, h("div", { key: '177741532c4a3c8c8b194ddb082d852e60a95ccb', class: "carousel-container", part: "carousel" }, h("slot", { key: 'bc09c8d40344a44df5713d169d5be7c1044a07d4' })), this.itemsCount > 0 && (h("div", { key: '310f38431c4c7298909251e28ead51adf48e8555', class: "carousel-indicators", part: "indicators", style: {
                 display: "flex",
                 position: "absolute",
                 zIndex: "10",

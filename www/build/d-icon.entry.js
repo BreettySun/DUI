@@ -362,7 +362,7 @@ const DIcon = class {
             transform: this.rotate ? `rotate(${this.rotate}deg)` : "",
             animation: this.spin ? "spin 2s linear infinite" : "none",
         };
-        return (h(Host, { key: '8893533af42821529012659714e8d68f89d0fad3', onClick: this.handleClick }, h("svg", { key: '81f0356d84d09f8996573ae2bd948c399ae7adc6', xmlns: "http://www.w3.org/2000/svg", width: this.size, height: this.size, viewBox: "0 0 24 24", fill: "none", style: svgStyle }, h("g", { key: 'b8a2603980c46f215d1d5bf8355e0d53cbb94c44', fill: this.color }, this.renderIcon()))));
+        return (h(Host, { key: '907f4175e286b0c051d8bafbf953c4bf134ed6e9', onClick: this.handleClick }, h("svg", { key: '2c09e05e91d3e7a64a565a22c109efc767e7d032', xmlns: "http://www.w3.org/2000/svg", width: this.size, height: this.size, viewBox: "0 0 24 24", fill: "none", style: svgStyle }, h("g", { key: '3d01c4c8034219c7c24278ccf0ec006695340f88', fill: this.color }, this.renderIcon()))));
     }
 };
 DIcon.style = dIconCss;

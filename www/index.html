@@ -1,6 +1,4 @@
-<!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"> <title>DUI 组件库展示</title> <link rel="modulepreload" href="/build/p-WgEohT2I.js"><script type="module" data-stencil data-resources-url="/build/" data-stencil-namespace="dui">import{p as e,b as o}from"/build/p-WgEohT2I.js";export{s as setNonce}from"/build/p-WgEohT2I.js";import{g as a}from"/build/p-DQuL1Twl.js";var t=()=>{const o=import.meta.url;const a={};if(o!==""){a.resourcesUrl=new URL(".",o).href}return e(a)};t().then((async e=>{await a();return o([["p-8a5dd824",[[1,"d-button",{type:[1],size:[1],disabled:[4],round:[4],customClass:[1,"custom-class"],customStyle:[16,"custom-style"]}],[1,"d-carousel",{autoplay:[4],delay:[2],indicatorPosition:[1,"indicator-position"],currentIndex:[32],itemsCount:[32],nextSlide:[64],prevSlide:[64],goToSlide:[64]},null,{autoplay:["autoplayChanged"],delay:["delayChanged"]}],[1,"d-divider",{direction:[1],color:[1],size:[1],lineType:[1,"line-type"],margin:[1]}],[1,"d-drawer",{visible:[1040,"show"],width:[1],showHeader:[1540,"show-header"],header:[1],maskClosable:[1540,"mask-closable"],placement:[1537],open:[64],close:[64]},null,{placement:["validateName"]}],[1,"d-icon",{name:[1],size:[1],color:[1],rotate:[2],spin:[4]}]]]],e)}));
-//# sourceMappingURL=dui.esm.js.map
-</script> <script nomodule="" src="/build/dui.js" data-stencil></script> <style>body {
+<!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"> <title>DUI 组件库展示</title> <script type="module" src="/build/dui.esm.js" data-stencil></script> <script nomodule="" src="/build/dui.js" data-stencil></script> <style>body {
                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
                     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
                     "Helvetica Neue", sans-serif;
@@ -140,7 +138,7 @@
                 &lt;/a&gt;<br> &lt;a target="_blank" href="https://example.com/image3"&gt;
                 &lt;img src="path/to/image3.jpg" alt="抽象图片3" /&gt;
                 &lt;/a&gt;<br> &lt;/d-carousel&gt; </div> </div> <!-- 抽屉组件 --> <div class="section"> <h2 class="section-title">抽屉组件 (d-drawer)</h2> <h3>基本用法</h3> <d-button id="open-drawer">打开抽屉</d-button> <d-drawer header="抽屉标题" id="drawer" show-header="" class="drawer-content"> <p>这是抽屉的内容。</p> <p>您可以在这里放置任何内容。</p> </d-drawer> <div class="code-block"> &lt;d-button id="open-drawer"&gt;打开抽屉&lt;/d-button&gt;<br> &lt;d-drawer header="抽屉标题" id="drawer" show-header
-                class="drawer-content"&gt;<br> &lt;p&gt;这是抽屉的内容。&lt;/p&gt;<br> &lt;p&gt;您可以在这里放置任何内容。&lt;/p&gt;<br> &lt;/d-drawer&gt; </div> </div> <!-- 分割线组件 --> <div class="section"> <h2 class="section-title">分割线组件 (d-divider)</h2> <h3>基本用法</h3> <d-divider></d-divider> <div class="code-block">&lt;d-divider&gt;&lt;/d-divider&gt;</div> </div> <script>
+                class="drawer-content"&gt;<br> &lt;p&gt;这是抽屉的内容。&lt;/p&gt;<br> &lt;p&gt;您可以在这里放置任何内容。&lt;/p&gt;<br> &lt;/d-drawer&gt; </div> </div> <!-- 分割线组件 --> <div class="section"> <h2 class="section-title">分割线组件 (d-divider)</h2> <h3>基本用法</h3> <d-divider></d-divider> <div class="code-block">&lt;d-divider&gt;&lt;/d-divider&gt;</div> </div> <d-modal visible="{true}" title="对话框标题"></d-modal> <script>
     const iconHeart = document.querySelector("#icon-heart");
     const btnFav = document.querySelector("#btn-fav");
     btnFav.onclick = () => {
@@ -152,4 +150,13 @@
         const drawer = document.querySelector("#drawer");
         drawer.open();
     };
+</script><script>
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  // auto-unregister service worker during dev mode
+  navigator.serviceWorker.getRegistration().then(function(registration) {
+    if (registration) {
+      registration.unregister().then(function() { location.reload(true) });
+    }
+  });
+}
 </script></body></html>

@@ -113,6 +113,16 @@ export namespace Components {
          */
         "spin": boolean;
     }
+    interface DModal {
+        "cancelText": string;
+        "confirmText": string;
+        "maskClosable": boolean;
+        "showClose": boolean;
+        "showFooter": boolean;
+        "title": string;
+        "visible": boolean;
+        "width": string;
+    }
 }
 export interface DDrawerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -121,6 +131,10 @@ export interface DDrawerCustomEvent<T> extends CustomEvent<T> {
 export interface DIconCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDIconElement;
+}
+export interface DModalCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDModalElement;
 }
 declare global {
     interface HTMLDButtonElement extends Components.DButton, HTMLStencilElement {
@@ -175,12 +189,32 @@ declare global {
         prototype: HTMLDIconElement;
         new (): HTMLDIconElement;
     };
+    interface HTMLDModalElementEventMap {
+        "onClose": void;
+        "onConfirm": void;
+        "onCancel": void;
+    }
+    interface HTMLDModalElement extends Components.DModal, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDModalElementEventMap>(type: K, listener: (this: HTMLDModalElement, ev: DModalCustomEvent<HTMLDModalElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDModalElementEventMap>(type: K, listener: (this: HTMLDModalElement, ev: DModalCustomEvent<HTMLDModalElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDModalElement: {
+        prototype: HTMLDModalElement;
+        new (): HTMLDModalElement;
+    };
     interface HTMLElementTagNameMap {
         "d-button": HTMLDButtonElement;
         "d-carousel": HTMLDCarouselElement;
         "d-divider": HTMLDDividerElement;
         "d-drawer": HTMLDDrawerElement;
         "d-icon": HTMLDIconElement;
+        "d-modal": HTMLDModalElement;
     }
 }
 declare namespace LocalJSX {
@@ -281,12 +315,26 @@ declare namespace LocalJSX {
          */
         "spin"?: boolean;
     }
+    interface DModal {
+        "cancelText"?: string;
+        "confirmText"?: string;
+        "maskClosable"?: boolean;
+        "onOnCancel"?: (event: DModalCustomEvent<void>) => void;
+        "onOnClose"?: (event: DModalCustomEvent<void>) => void;
+        "onOnConfirm"?: (event: DModalCustomEvent<void>) => void;
+        "showClose"?: boolean;
+        "showFooter"?: boolean;
+        "title"?: string;
+        "visible"?: boolean;
+        "width"?: string;
+    }
     interface IntrinsicElements {
         "d-button": DButton;
         "d-carousel": DCarousel;
         "d-divider": DDivider;
         "d-drawer": DDrawer;
         "d-icon": DIcon;
+        "d-modal": DModal;
     }
 }
 export { LocalJSX as JSX };
@@ -298,6 +346,7 @@ declare module "@stencil/core" {
             "d-divider": LocalJSX.DDivider & JSXBase.HTMLAttributes<HTMLDDividerElement>;
             "d-drawer": LocalJSX.DDrawer & JSXBase.HTMLAttributes<HTMLDDrawerElement>;
             "d-icon": LocalJSX.DIcon & JSXBase.HTMLAttributes<HTMLDIconElement>;
+            "d-modal": LocalJSX.DModal & JSXBase.HTMLAttributes<HTMLDModalElement>;
         }
     }
 }

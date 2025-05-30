@@ -541,7 +541,7 @@
                 id="modal-no-footer"
                 header="无底部按钮对话框"
                 show-header
-                show-footer="{false}">
+                show-footer="false">
                 <p>这是一个没有底部按钮的对话框。</p>
             </d-modal>
 
@@ -552,6 +552,64 @@
                 show-header show-footer={false}&gt;<br />
                 &lt;p&gt;这是一个没有底部按钮的对话框。&lt;/p&gt;<br />
                 &lt;/d-modal&gt;
+            </div>
+
+            <h3>对话框中使用其他组件</h3>
+            <d-button id="open-modal-with-components">
+                打开对话框中使用其他组件
+            </d-button>
+            <d-modal
+                id="modal-with-components"
+                header="对话框中使用其他组件"
+                show-header
+                show-footer>
+                <d-carousel
+                    class="custom-carousel"
+                    autoplay
+                    delay="2000"
+                    indicator-position="right">
+                    <a
+                        target="_blank"
+                        href="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract01.jpg">
+                        <img
+                            src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract01.jpg"
+                            alt="抽象图片1" />
+                    </a>
+                    <a
+                        target="_blank"
+                        href="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract04.jpg">
+                        <img
+                            src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract04.jpg"
+                            alt="抽象图片2" />
+                    </a>
+                    <a
+                        target="_blank"
+                        href="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract02.jpg">
+                        <img
+                            src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract02.jpg"
+                            alt="抽象图片3" />
+                    </a>
+                </d-carousel>
+            </d-modal>
+
+            <div class="code-block">
+                &lt;d-button
+                id="open-modal-no-footer"&gt;打开无底部按钮对话框&lt;/d-button&gt;<br />
+                &lt;d-modal id="modal-no-footer" header="无底部按钮对话框"
+                show-header show-footer={false}&gt;<br />
+                &lt;d-carousel class="custom-carousel" autoplay delay="2000"
+                indicator-position="right"&gt;<br />
+                &lt;a target="_blank" href="https://example.com/image1"&gt;
+                &lt;img src="path/to/image1.jpg" alt="抽象图片1" /&gt;
+                &lt;/a&gt;<br />
+                &lt;a target="_blank" href="https://example.com/image2"&gt;
+                &lt;img src="path/to/image2.jpg" alt="抽象图片2" /&gt;
+                &lt;/a&gt;<br />
+                &lt;a target="_blank" href="https://example.com/image3"&gt;
+                &lt;img src="path/to/image3.jpg" alt="抽象图片3" /&gt;
+                &lt;/a&gt;<br />
+                &lt;/d-carousel&gt;<br />
+                &lt;/d-modal&gt;<br />
             </div>
         </div>
 
@@ -578,5 +636,31 @@
     openDrawer.onclick = () => {
         const drawer = document.querySelector("#drawer");
         drawer.open();
+    };
+
+    const openModal = document.querySelector("#open-modal");
+    openModal.onclick = () => {
+        const modal = document.querySelector("#modal");
+        modal.open();
+    };
+
+    const openModalCustom = document.querySelector("#open-modal-custom");
+    openModalCustom.onclick = () => {
+        const modal = document.querySelector("#modal-custom");
+        modal.open();
+    };
+
+    const openModalNoFooter = document.querySelector("#open-modal-no-footer");
+    openModalNoFooter.onclick = () => {
+        const modal = document.querySelector("#modal-no-footer");
+        modal.open();
+    };
+
+    const openModalWithComponents = document.querySelector(
+        "#open-modal-with-components"
+    );
+    openModalWithComponents.onclick = () => {
+        const modal = document.querySelector("#modal-with-components");
+        modal.open();
     };
 </script>

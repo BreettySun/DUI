@@ -34,7 +34,7 @@ const DModal = class {
         }
     }
     render() {
-        return (h(Host, { key: '4185040598dbbdeb89db20b5d463fbdb1e40351a', show: this.show }, h("div", { key: '24b1f502ce745106bad3896d1a25008765ab8669', class: "ivy-mask", onClick: this.maskClose.bind(this) }), h("div", { key: 'feace9ded20cf20b948ed8f7de5735efdc783c8c', class: "ivy-modal", style: { width: this.width } }, this.renderHeader(), h("div", { key: 'efdb28b3d90c2371c436ef13b04d85d332d14278', class: "ivy-modal-body" }, h("slot", { key: '6f4935eda18650ec314cc84c7de57f0117917abd' })), this.renderFooter())));
+        return (h(Host, { key: '06d862c667ef7387571a4d872e22045189a71c84', show: this.show }, h("div", { key: '172abab6da198fdc8176e98cd8655ba2e9ac10f8', class: "ivy-mask", onClick: this.maskClose.bind(this) }), h("div", { key: 'ce5e325fe3f94deec32631dc0939d40fcb74234e', class: "ivy-modal", style: { width: this.width } }, this.renderHeader(), h("div", { key: 'c8c3c70a44b77adb218f0a2278ebbb469fdd7173', class: "ivy-modal-body" }, h("slot", { key: '4978da35fb1e793fa4f509753487b495553cee76' })), this.renderFooter())));
     }
     onClose;
     onConfirm;

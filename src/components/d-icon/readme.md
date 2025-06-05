@@ -23,6 +23,19 @@
 | `iconClick` | 点击事件        | `CustomEvent<MouseEvent>` |
 
 
+## Dependencies
+
+### Used by
+
+ - [d-message](../d-message)
+
+### Graph
+```mermaid
+graph TD;
+  d-message --> d-icon
+  style d-icon fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

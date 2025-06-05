@@ -113,6 +113,8 @@ export namespace Components {
          */
         "spin": boolean;
     }
+    interface DMessage {
+    }
     interface DModal {
         "cancel": () => Promise<void>;
         "cancelText": string;
@@ -193,6 +195,12 @@ declare global {
         prototype: HTMLDIconElement;
         new (): HTMLDIconElement;
     };
+    interface HTMLDMessageElement extends Components.DMessage, HTMLStencilElement {
+    }
+    var HTMLDMessageElement: {
+        prototype: HTMLDMessageElement;
+        new (): HTMLDMessageElement;
+    };
     interface HTMLDModalElementEventMap {
         "onClose": any;
         "onConfirm": any;
@@ -218,6 +226,7 @@ declare global {
         "d-divider": HTMLDDividerElement;
         "d-drawer": HTMLDDrawerElement;
         "d-icon": HTMLDIconElement;
+        "d-message": HTMLDMessageElement;
         "d-modal": HTMLDModalElement;
     }
 }
@@ -319,6 +328,8 @@ declare namespace LocalJSX {
          */
         "spin"?: boolean;
     }
+    interface DMessage {
+    }
     interface DModal {
         "cancelText"?: string;
         "confirmText"?: string;
@@ -338,6 +349,7 @@ declare namespace LocalJSX {
         "d-divider": DDivider;
         "d-drawer": DDrawer;
         "d-icon": DIcon;
+        "d-message": DMessage;
         "d-modal": DModal;
     }
 }
@@ -350,6 +362,7 @@ declare module "@stencil/core" {
             "d-divider": LocalJSX.DDivider & JSXBase.HTMLAttributes<HTMLDDividerElement>;
             "d-drawer": LocalJSX.DDrawer & JSXBase.HTMLAttributes<HTMLDDrawerElement>;
             "d-icon": LocalJSX.DIcon & JSXBase.HTMLAttributes<HTMLDIconElement>;
+            "d-message": LocalJSX.DMessage & JSXBase.HTMLAttributes<HTMLDMessageElement>;
             "d-modal": LocalJSX.DModal & JSXBase.HTMLAttributes<HTMLDModalElement>;
         }
     }

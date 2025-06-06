@@ -1,373 +1,316 @@
 <!DOCTYPE html>
-<html
-    dir="ltr"
-    lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-        <title>DUI 组件库展示</title>
+<html dir="ltr" lang="en">
 
-        <script
-            type="module"
-            src="./www/build/dui.esm.js"></script>
-        <script
-            nomodule
-            src="./www/build/dui.js"></script>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>DUI 组件库展示</title>
 
-        <style>
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
-                    "Helvetica Neue", sans-serif;
-                color: #333;
-                line-height: 1.6;
-                padding: 20px;
-                max-width: 1200px;
-                margin: 0 auto;
+    <script type="module" src="./www/build/dui.esm.js"></script>
+    <script nomodule src="./www/build/dui.js"></script>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+                "Helvetica Neue", sans-serif;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            color: #1890ff;
+        }
+
+        .component-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .code-block {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono",
+                Menlo, monospace;
+            font-size: 14px;
+        }
+
+        /* 按钮样式 */
+        d-button {
+            margin: 10px;
+        }
+
+        .bigBtn::part(button) {
+            width: 100%;
+            background-color: #ff4d4f;
+        }
+
+        .bigBtn::part(button):hover {
+            background-color: #ff7875;
+        }
+
+        .bigBtn d-icon {
+            margin-left: 10px;
+        }
+
+        /* 轮播图样式 */
+        d-carousel {
+            width: 100%;
+            height: 260px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        d-carousel a img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        d-carousel::part(carousel) {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 自定义轮播图样式 */
+        .custom-carousel {
+            --indicator-active-color: #ff4d4f;
+            --indicator-color: rgba(0, 0, 0, 0.2);
+            --indicator-size: 10px;
+        }
+
+        .custom-carousel::part(indicator-active) {
+            transform: scale(1.2);
+        }
+
+        /* 抽屉样式 */
+        .drawer-content {
+            padding: 20px;
+        }
+
+        /* 分割线样式 */
+        d-divider {
+            margin: 30px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <d-message></d-message>
+    <script>
+        (function () {
+            let seed = 0;
+            function toast(type, text, duration = 3000, icon) {
+                const msg = { id: seed++, type, text, duration, icon };
+                window.dispatchEvent(new CustomEvent('d-message', {
+                    detail: msg,
+                    bubbles: true,
+                    composed: true
+                }));
             }
+            window.$message = {
+                success(text, duration, icon) { toast('success', text, duration, icon); },
+                info(text, duration, icon) { toast('info', text, duration, icon); },
+                warning(text, duration, icon) { toast('warning', text, duration, icon); },
+                error(text, duration, icon) { toast('error', text, duration, icon); },
+            };
+        })();
+    </script>
 
-            .section {
-                margin-bottom: 40px;
-                padding: 20px;
-                border-radius: 8px;
-                background-color: #f9f9f9;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            }
+    <h1>DUI 组件库展示</h1>
+    <p>这个页面展示了 DUI 组件库中所有已定义的组件及其用法示例。</p>
 
-            .section-title {
-                margin-top: 0;
-                margin-bottom: 20px;
-                padding-bottom: 10px;
-                border-bottom: 1px solid #eee;
-                color: #1890ff;
-            }
+    <!-- 按钮组件 -->
+    <div class="section">
+        <h2 class="section-title">按钮组件 (d-button)</h2>
 
-            .component-row {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 16px;
-                margin-bottom: 20px;
-            }
-
-            .code-block {
-                background-color: #f5f5f5;
-                padding: 15px;
-                border-radius: 4px;
-                margin-bottom: 20px;
-                overflow-x: auto;
-                font-family: "SFMono-Regular", Consolas, "Liberation Mono",
-                    Menlo, monospace;
-                font-size: 14px;
-            }
-
-            /* 按钮样式 */
-            d-button {
-                margin: 10px;
-            }
-
-            .bigBtn::part(button) {
-                width: 100%;
-                background-color: #ff4d4f;
-            }
-
-            .bigBtn::part(button):hover {
-                background-color: #ff7875;
-            }
-
-            .bigBtn d-icon {
-                margin-left: 10px;
-            }
-
-            /* 轮播图样式 */
-            d-carousel {
-                width: 100%;
-                height: 260px;
-                max-width: 600px;
-                margin: 20px auto;
-            }
-
-            d-carousel a img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
-            d-carousel::part(carousel) {
-                border-radius: 10px;
-                overflow: hidden;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            }
-
-            /* 自定义轮播图样式 */
-            .custom-carousel {
-                --indicator-active-color: #ff4d4f;
-                --indicator-color: rgba(0, 0, 0, 0.2);
-                --indicator-size: 10px;
-            }
-
-            .custom-carousel::part(indicator-active) {
-                transform: scale(1.2);
-            }
-
-            /* 抽屉样式 */
-            .drawer-content {
-                padding: 20px;
-            }
-
-            /* 分割线样式 */
-            d-divider {
-                margin: 30px 0;
-            }
-        </style>
-    </head>
-
-    <body>
-        <h1>DUI 组件库展示</h1>
-        <p>这个页面展示了 DUI 组件库中所有已定义的组件及其用法示例。</p>
-
-        <!-- 按钮组件 -->
-        <div class="section">
-            <h2 class="section-title">按钮组件 (d-button)</h2>
-
-            <h3>基本类型</h3>
-            <div class="component-row">
-                <d-button type="primary">主要按钮</d-button>
-                <d-button type="secondary">次要按钮</d-button>
-                <d-button type="danger">危险按钮</d-button>
-                <d-button type="text">文本按钮</d-button>
-            </div>
-
-            <div class="code-block">
-                &lt;d-button type="primary"&gt;主要按钮&lt;/d-button&gt;<br />
-                &lt;d-button type="secondary"&gt;次要按钮&lt;/d-button&gt;<br />
-                &lt;d-button type="danger"&gt;危险按钮&lt;/d-button&gt;<br />
-                &lt;d-button type="text"&gt;文本按钮&lt;/d-button&gt;
-            </div>
-
-            <h3>不同尺寸</h3>
-            <div class="component-row">
-                <d-button
-                    size="small"
-                    type="primary">
-                    小按钮
-                </d-button>
-                <d-button
-                    size="medium"
-                    type="primary">
-                    中按钮
-                </d-button>
-                <d-button
-                    size="large"
-                    type="primary">
-                    大按钮
-                </d-button>
-            </div>
-
-            <div class="code-block">
-                &lt;d-button size="small"
-                type="primary"&gt;小按钮&lt;/d-button&gt;<br />
-                &lt;d-button size="medium"
-                type="primary"&gt;中按钮&lt;/d-button&gt;<br />
-                &lt;d-button size="large"
-                type="primary"&gt;大按钮&lt;/d-button&gt;
-            </div>
-
-            <h3>禁用状态</h3>
-            <div class="component-row">
-                <d-button
-                    disabled
-                    type="primary">
-                    禁用按钮
-                </d-button>
-                <d-button
-                    disabled
-                    type="secondary">
-                    禁用按钮
-                </d-button>
-                <d-button
-                    disabled
-                    type="danger">
-                    禁用按钮
-                </d-button>
-            </div>
-
-            <div class="code-block">
-                &lt;d-button disabled
-                type="primary"&gt;禁用按钮&lt;/d-button&gt;<br />
-                &lt;d-button disabled
-                type="secondary"&gt;禁用按钮&lt;/d-button&gt;<br />
-                &lt;d-button disabled type="danger"&gt;禁用按钮&lt;/d-button&gt;
-            </div>
-
-            <h3>带图标的按钮</h3>
-            <div class="component-row">
-                <d-button type="primary">
-                    保存
-                    <d-icon
-                        name="save"
-                        color="#fff"
-                        size="16px"></d-icon>
-                </d-button>
-
-                <d-button type="secondary">
-                    <d-icon
-                        name="search"
-                        color="#333"
-                        size="16px"></d-icon>
-                    搜索
-                </d-button>
-
-                <d-button
-                    size="large"
-                    class="bigBtn">
-                    删除
-                    <d-icon
-                        name="delete"
-                        color="#fff"
-                        size="16px"></d-icon>
-                </d-button>
-            </div>
-
-            <div class="code-block">
-                &lt;d-button type="primary"&gt; 保存 &lt;d-icon name="save"
-                color="#fff" size="16px"&gt;&lt;/d-icon&gt; &lt;/d-button&gt;<br />
-                &lt;d-button type="secondary"&gt; &lt;d-icon name="search"
-                color="#333" size="16px"&gt;&lt;/d-icon&gt; 搜索
-                &lt;/d-button&gt;<br />
-                &lt;d-button size="large" class="bigBtn"&gt; 删除 &lt;d-icon
-                name="delete" color="#fff" size="16px"&gt;&lt;/d-icon&gt;
-                &lt;/d-button&gt;
-            </div>
-
-            <h3>圆形按钮</h3>
-            <div class="component-row">
-                <d-button
-                    round
-                    type="primary">
-                    <d-icon
-                        name="add"
-                        color="#fff"
-                        size="16px"></d-icon>
-                </d-button>
-
-                <d-button
-                    round
-                    type="secondary"
-                    id="btn-fav">
-                    <d-icon
-                        name="heart"
-                        color="#333"
-                        size="16px"
-                        id="icon-heart"></d-icon>
-                </d-button>
-
-                <d-button
-                    round
-                    type="danger">
-                    <d-icon
-                        name="close"
-                        color="#fff"
-                        size="16px"></d-icon>
-                </d-button>
-            </div>
-
-            <div class="code-block">
-                &lt;d-button round type="primary"&gt; &lt;d-icon name="add"
-                color="#fff" size="16px"&gt;&lt;/d-icon&gt; &lt;/d-button&gt;<br />
-                &lt;d-button round type="secondary" id="btn-fav"&gt; &lt;d-icon
-                name="heart" color="#333" size="16px"
-                id="icon-heart"&gt;&lt;/d-icon&gt; &lt;/d-button&gt;<br />
-                &lt;d-button round type="danger"&gt; &lt;d-icon name="close"
-                color="#fff" size="16px"&gt;&lt;/d-icon&gt; &lt;/d-button&gt;
-            </div>
+        <h3>基本类型</h3>
+        <div class="component-row">
+            <d-button type="primary">主要按钮</d-button>
+            <d-button type="secondary">次要按钮</d-button>
+            <d-button type="danger">危险按钮</d-button>
+            <d-button type="text">文本按钮</d-button>
         </div>
 
-        <!-- 图标组件 -->
-        <div class="section">
-            <h2 class="section-title">图标组件 (d-icon)</h2>
-
-            <h3>基本用法</h3>
-            <div class="component-row">
-                <d-icon
-                    name="home"
-                    size="24px"
-                    color="#1890ff"></d-icon>
-                <d-icon
-                    name="settings"
-                    size="24px"
-                    color="#52c41a"></d-icon>
-                <d-icon
-                    name="person"
-                    size="24px"
-                    color="#fa8c16"></d-icon>
-                <d-icon
-                    name="notifications"
-                    size="24px"
-                    color="#f5222d"></d-icon>
-                <d-icon
-                    name="favorite"
-                    size="24px"
-                    color="#eb2f96"></d-icon>
-            </div>
-
-            <div class="code-block">
-                &lt;d-icon name="home" size="24px"
-                color="#1890ff"&gt;&lt;/d-icon&gt;<br />
-                &lt;d-icon name="settings" size="24px"
-                color="#52c41a"&gt;&lt;/d-icon&gt;<br />
-                &lt;d-icon name="person" size="24px"
-                color="#fa8c16"&gt;&lt;/d-icon&gt;<br />
-                &lt;d-icon name="notifications" size="24px"
-                color="#f5222d"&gt;&lt;/d-icon&gt;<br />
-                &lt;d-icon name="favorite" size="24px"
-                color="#eb2f96"&gt;&lt;/d-icon&gt;
-            </div>
-
-            <h3>不同尺寸</h3>
-            <div class="component-row">
-                <d-icon
-                    name="star"
-                    size="16px"
-                    color="#1890ff"></d-icon>
-                <d-icon
-                    name="star"
-                    size="24px"
-                    color="#1890ff"></d-icon>
-                <d-icon
-                    name="star"
-                    size="32px"
-                    color="#1890ff"></d-icon>
-                <d-icon
-                    name="star"
-                    size="48px"
-                    color="#1890ff"></d-icon>
-            </div>
-
-            <div class="code-block">
-                &lt;d-icon name="star" size="16px"
-                color="#1890ff"&gt;&lt;/d-icon&gt;<br />
-                &lt;d-icon name="star" size="24px"
-                color="#1890ff"&gt;&lt;/d-icon&gt;<br />
-                &lt;d-icon name="star" size="32px"
-                color="#1890ff"&gt;&lt;/d-icon&gt;<br />
-                &lt;d-icon name="star" size="48px"
-                color="#1890ff"&gt;&lt;/d-icon&gt;
-            </div>
+        <div class="code-block">
+            &lt;d-button type="primary"&gt;主要按钮&lt;/d-button&gt;<br />
+            &lt;d-button type="secondary"&gt;次要按钮&lt;/d-button&gt;<br />
+            &lt;d-button type="danger"&gt;危险按钮&lt;/d-button&gt;<br />
+            &lt;d-button type="text"&gt;文本按钮&lt;/d-button&gt;
         </div>
 
-        <!-- 轮播图组件 -->
-        <div class="section">
-            <h2 class="section-title">轮播图组件 (d-carousel)</h2>
+        <h3>不同尺寸</h3>
+        <div class="component-row">
+            <d-button size="small" type="primary">
+                小按钮
+            </d-button>
+            <d-button size="medium" type="primary">
+                中按钮
+            </d-button>
+            <d-button size="large" type="primary">
+                大按钮
+            </d-button>
+        </div>
 
-            <h3>基本用法</h3>
-            <d-carousel
-                autoplay
-                delay="3000"
-                indicator-position="bottom">
-                <div
-                    style="
+        <div class="code-block">
+            &lt;d-button size="small"
+            type="primary"&gt;小按钮&lt;/d-button&gt;<br />
+            &lt;d-button size="medium"
+            type="primary"&gt;中按钮&lt;/d-button&gt;<br />
+            &lt;d-button size="large"
+            type="primary"&gt;大按钮&lt;/d-button&gt;
+        </div>
+
+        <h3>禁用状态</h3>
+        <div class="component-row">
+            <d-button disabled type="primary">
+                禁用按钮
+            </d-button>
+            <d-button disabled type="secondary">
+                禁用按钮
+            </d-button>
+            <d-button disabled type="danger">
+                禁用按钮
+            </d-button>
+        </div>
+
+        <div class="code-block">
+            &lt;d-button disabled
+            type="primary"&gt;禁用按钮&lt;/d-button&gt;<br />
+            &lt;d-button disabled
+            type="secondary"&gt;禁用按钮&lt;/d-button&gt;<br />
+            &lt;d-button disabled type="danger"&gt;禁用按钮&lt;/d-button&gt;
+        </div>
+
+        <h3>带图标的按钮</h3>
+        <div class="component-row">
+            <d-button type="primary">
+                保存
+                <d-icon name="save" color="#fff" size="16px"></d-icon>
+            </d-button>
+
+            <d-button type="secondary">
+                <d-icon name="search" color="#333" size="16px"></d-icon>
+                搜索
+            </d-button>
+
+            <d-button size="large" class="bigBtn">
+                删除
+                <d-icon name="delete" color="#fff" size="16px"></d-icon>
+            </d-button>
+        </div>
+
+        <div class="code-block">
+            &lt;d-button type="primary"&gt; 保存 &lt;d-icon name="save"
+            color="#fff" size="16px"&gt;&lt;/d-icon&gt; &lt;/d-button&gt;<br />
+            &lt;d-button type="secondary"&gt; &lt;d-icon name="search"
+            color="#333" size="16px"&gt;&lt;/d-icon&gt; 搜索
+            &lt;/d-button&gt;<br />
+            &lt;d-button size="large" class="bigBtn"&gt; 删除 &lt;d-icon
+            name="delete" color="#fff" size="16px"&gt;&lt;/d-icon&gt;
+            &lt;/d-button&gt;
+        </div>
+
+        <h3>圆形按钮</h3>
+        <div class="component-row">
+            <d-button round type="primary">
+                <d-icon name="add" color="#fff" size="16px"></d-icon>
+            </d-button>
+
+            <d-button round type="secondary" id="btn-fav">
+                <d-icon name="heart" color="#333" size="16px" id="icon-heart"></d-icon>
+            </d-button>
+
+            <d-button round type="danger">
+                <d-icon name="close" color="#fff" size="16px"></d-icon>
+            </d-button>
+        </div>
+
+        <div class="code-block">
+            &lt;d-button round type="primary"&gt; &lt;d-icon name="add"
+            color="#fff" size="16px"&gt;&lt;/d-icon&gt; &lt;/d-button&gt;<br />
+            &lt;d-button round type="secondary" id="btn-fav"&gt; &lt;d-icon
+            name="heart" color="#333" size="16px"
+            id="icon-heart"&gt;&lt;/d-icon&gt; &lt;/d-button&gt;<br />
+            &lt;d-button round type="danger"&gt; &lt;d-icon name="close"
+            color="#fff" size="16px"&gt;&lt;/d-icon&gt; &lt;/d-button&gt;
+        </div>
+    </div>
+
+    <!-- 图标组件 -->
+    <div class="section">
+        <h2 class="section-title">图标组件 (d-icon)</h2>
+
+        <h3>基本用法</h3>
+        <div class="component-row">
+            <d-icon name="home" size="24px" color="#1890ff"></d-icon>
+            <d-icon name="settings" size="24px" color="#52c41a"></d-icon>
+            <d-icon name="person" size="24px" color="#fa8c16"></d-icon>
+            <d-icon name="notifications" size="24px" color="#f5222d"></d-icon>
+            <d-icon name="favorite" size="24px" color="#eb2f96"></d-icon>
+        </div>
+
+        <div class="code-block">
+            &lt;d-icon name="home" size="24px"
+            color="#1890ff"&gt;&lt;/d-icon&gt;<br />
+            &lt;d-icon name="settings" size="24px"
+            color="#52c41a"&gt;&lt;/d-icon&gt;<br />
+            &lt;d-icon name="person" size="24px"
+            color="#fa8c16"&gt;&lt;/d-icon&gt;<br />
+            &lt;d-icon name="notifications" size="24px"
+            color="#f5222d"&gt;&lt;/d-icon&gt;<br />
+            &lt;d-icon name="favorite" size="24px"
+            color="#eb2f96"&gt;&lt;/d-icon&gt;
+        </div>
+
+        <h3>不同尺寸</h3>
+        <div class="component-row">
+            <d-icon name="star" size="16px" color="#1890ff"></d-icon>
+            <d-icon name="star" size="24px" color="#1890ff"></d-icon>
+            <d-icon name="star" size="32px" color="#1890ff"></d-icon>
+            <d-icon name="star" size="48px" color="#1890ff"></d-icon>
+        </div>
+
+        <div class="code-block">
+            &lt;d-icon name="star" size="16px"
+            color="#1890ff"&gt;&lt;/d-icon&gt;<br />
+            &lt;d-icon name="star" size="24px"
+            color="#1890ff"&gt;&lt;/d-icon&gt;<br />
+            &lt;d-icon name="star" size="32px"
+            color="#1890ff"&gt;&lt;/d-icon&gt;<br />
+            &lt;d-icon name="star" size="48px"
+            color="#1890ff"&gt;&lt;/d-icon&gt;
+        </div>
+    </div>
+
+    <!-- 轮播图组件 -->
+    <div class="section">
+        <h2 class="section-title">轮播图组件 (d-carousel)</h2>
+
+        <h3>基本用法</h3>
+        <d-carousel autoplay delay="3000" indicator-position="bottom">
+            <div style="
                         height: 100%;
                         background-color: #1890ff;
                         color: white;
@@ -376,10 +319,9 @@
                         align-items: center;
                         font-size: 24px;
                     ">
-                    幻灯片 1
-                </div>
-                <div
-                    style="
+                幻灯片 1
+            </div>
+            <div style="
                         height: 100%;
                         background-color: #52c41a;
                         color: white;
@@ -388,10 +330,9 @@
                         align-items: center;
                         font-size: 24px;
                     ">
-                    幻灯片 2
-                </div>
-                <div
-                    style="
+                幻灯片 2
+            </div>
+            <div style="
                         height: 100%;
                         background-color: #fa8c16;
                         color: white;
@@ -400,229 +341,210 @@
                         align-items: center;
                         font-size: 24px;
                     ">
-                    幻灯片 3
-                </div>
-            </d-carousel>
-
-            <div class="code-block">
-                &lt;d-carousel autoplay delay="3000"
-                indicator-position="bottom"&gt;<br />
-                &lt;div style="height: 100%; background-color: #1890ff; color:
-                white; display: flex; justify-content: center; align-items:
-                center; font-size: 24px;"&gt; 幻灯片 1 &lt;/div&gt;<br />
-                &lt;div style="height: 100%; background-color: #52c41a; color:
-                white; display: flex; justify-content: center; align-items:
-                center; font-size: 24px;"&gt; 幻灯片 2 &lt;/div&gt;<br />
-                &lt;div style="height: 100%; background-color: #fa8c16; color:
-                white; display: flex; justify-content: center; align-items:
-                center; font-size: 24px;"&gt; 幻灯片 3 &lt;/div&gt;<br />
-                &lt;/d-carousel&gt;
+                幻灯片 3
             </div>
+        </d-carousel>
 
-            <h3>图片轮播</h3>
-            <d-carousel
-                class="custom-carousel"
-                autoplay
-                delay="2000"
-                indicator-position="right">
-                <a
-                    target="_blank"
+        <div class="code-block">
+            &lt;d-carousel autoplay delay="3000"
+            indicator-position="bottom"&gt;<br />
+            &lt;div style="height: 100%; background-color: #1890ff; color:
+            white; display: flex; justify-content: center; align-items:
+            center; font-size: 24px;"&gt; 幻灯片 1 &lt;/div&gt;<br />
+            &lt;div style="height: 100%; background-color: #52c41a; color:
+            white; display: flex; justify-content: center; align-items:
+            center; font-size: 24px;"&gt; 幻灯片 2 &lt;/div&gt;<br />
+            &lt;div style="height: 100%; background-color: #fa8c16; color:
+            white; display: flex; justify-content: center; align-items:
+            center; font-size: 24px;"&gt; 幻灯片 3 &lt;/div&gt;<br />
+            &lt;/d-carousel&gt;
+        </div>
+
+        <h3>图片轮播</h3>
+        <d-carousel class="custom-carousel" autoplay delay="2000" indicator-position="right">
+            <a target="_blank"
+                href="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract01.jpg">
+                <img src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract01.jpg"
+                    alt="抽象图片1" />
+            </a>
+            <a target="_blank"
+                href="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract04.jpg">
+                <img src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract04.jpg"
+                    alt="抽象图片2" />
+            </a>
+            <a target="_blank"
+                href="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract02.jpg">
+                <img src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract02.jpg"
+                    alt="抽象图片3" />
+            </a>
+        </d-carousel>
+
+        <div class="code-block">
+            &lt;d-carousel class="custom-carousel" autoplay delay="2000"
+            indicator-position="right"&gt;<br />
+            &lt;a target="_blank" href="https://example.com/image1"&gt;
+            &lt;img src="path/to/image1.jpg" alt="抽象图片1" /&gt;
+            &lt;/a&gt;<br />
+            &lt;a target="_blank" href="https://example.com/image2"&gt;
+            &lt;img src="path/to/image2.jpg" alt="抽象图片2" /&gt;
+            &lt;/a&gt;<br />
+            &lt;a target="_blank" href="https://example.com/image3"&gt;
+            &lt;img src="path/to/image3.jpg" alt="抽象图片3" /&gt;
+            &lt;/a&gt;<br />
+            &lt;/d-carousel&gt;
+        </div>
+    </div>
+
+    <!-- 抽屉组件 -->
+    <div class="section">
+        <h2 class="section-title">抽屉组件 (d-drawer)</h2>
+
+        <h3>基本用法</h3>
+        <d-button id="open-drawer">打开抽屉</d-button>
+        <d-drawer header="抽屉标题" id="drawer" show-header class="drawer-content">
+            <p>这是抽屉的内容。</p>
+            <p>您可以在这里放置任何内容。</p>
+        </d-drawer>
+
+        <div class="code-block">
+            &lt;d-button id="open-drawer"&gt;打开抽屉&lt;/d-button&gt;<br />
+            &lt;d-drawer header="抽屉标题" id="drawer" show-header
+            class="drawer-content"&gt;<br />
+            &lt;p&gt;这是抽屉的内容。&lt;/p&gt;<br />
+            &lt;p&gt;您可以在这里放置任何内容。&lt;/p&gt;<br />
+            &lt;/d-drawer&gt;
+        </div>
+    </div>
+
+    <!-- 对话框组件 -->
+    <div class="section">
+        <h2 class="section-title">对话框组件 (d-modal)</h2>
+
+        <h3>基本用法</h3>
+        <d-button id="open-modal">打开对话框</d-button>
+        <d-modal id="modal" header="对话框标题" show-header show-footer>
+            <p>这是对话框的内容。</p>
+            <p>您可以在这里放置任何内容。</p>
+        </d-modal>
+
+        <div class="code-block">
+            &lt;d-button id="open-modal"&gt;打开对话框&lt;/d-button&gt;<br />
+            &lt;d-modal id="modal" header="对话框标题" show-header
+            show-footer&gt;<br />
+            &lt;p&gt;这是对话框的内容。&lt;/p&gt;<br />
+            &lt;p&gt;您可以在这里放置任何内容。&lt;/p&gt;<br />
+            &lt;/d-modal&gt;
+        </div>
+
+        <h3>自定义按钮文本</h3>
+        <d-button id="open-modal-custom">打开自定义对话框</d-button>
+        <d-modal id="modal-custom" header="自定义对话框" confirm-text="好的" cancel-text="算了" show-header show-footer>
+            <p>这是一个自定义按钮文本的对话框。</p>
+        </d-modal>
+
+        <div class="code-block">
+            &lt;d-button
+            id="open-modal-custom"&gt;打开自定义对话框&lt;/d-button&gt;<br />
+            &lt;d-modal id="modal-custom" header="自定义对话框"
+            confirm-text="好的" cancel-text="算了" show-header
+            show-footer&gt;<br />
+            &lt;p&gt;这是一个自定义按钮文本的对话框。&lt;/p&gt;<br />
+            &lt;/d-modal&gt;
+        </div>
+
+        <h3>无底部按钮</h3>
+        <d-button id="open-modal-no-footer">打开无底部按钮对话框</d-button>
+        <d-modal id="modal-no-footer" header="无底部按钮对话框" show-header show-footer="false">
+            <p>这是一个没有底部按钮的对话框。</p>
+        </d-modal>
+
+        <div class="code-block">
+            &lt;d-button
+            id="open-modal-no-footer"&gt;打开无底部按钮对话框&lt;/d-button&gt;<br />
+            &lt;d-modal id="modal-no-footer" header="无底部按钮对话框"
+            show-header show-footer={false}&gt;<br />
+            &lt;p&gt;这是一个没有底部按钮的对话框。&lt;/p&gt;<br />
+            &lt;/d-modal&gt;
+        </div>
+
+        <h3>对话框中使用其他组件</h3>
+        <d-button id="open-modal-with-components">
+            打开对话框中使用其他组件
+        </d-button>
+        <d-modal id="modal-with-components" header="对话框中使用其他组件" show-header show-footer>
+            <d-carousel class="custom-carousel" autoplay delay="2000" indicator-position="right">
+                <a target="_blank"
                     href="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract01.jpg">
-                    <img
-                        src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract01.jpg"
+                    <img src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract01.jpg"
                         alt="抽象图片1" />
                 </a>
-                <a
-                    target="_blank"
+                <a target="_blank"
                     href="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract04.jpg">
-                    <img
-                        src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract04.jpg"
+                    <img src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract04.jpg"
                         alt="抽象图片2" />
                 </a>
-                <a
-                    target="_blank"
+                <a target="_blank"
                     href="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract02.jpg">
-                    <img
-                        src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract02.jpg"
+                    <img src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract02.jpg"
                         alt="抽象图片3" />
                 </a>
             </d-carousel>
+        </d-modal>
 
-            <div class="code-block">
-                &lt;d-carousel class="custom-carousel" autoplay delay="2000"
-                indicator-position="right"&gt;<br />
-                &lt;a target="_blank" href="https://example.com/image1"&gt;
-                &lt;img src="path/to/image1.jpg" alt="抽象图片1" /&gt;
-                &lt;/a&gt;<br />
-                &lt;a target="_blank" href="https://example.com/image2"&gt;
-                &lt;img src="path/to/image2.jpg" alt="抽象图片2" /&gt;
-                &lt;/a&gt;<br />
-                &lt;a target="_blank" href="https://example.com/image3"&gt;
-                &lt;img src="path/to/image3.jpg" alt="抽象图片3" /&gt;
-                &lt;/a&gt;<br />
-                &lt;/d-carousel&gt;
-            </div>
+        <div class="code-block">
+            &lt;d-button
+            id="open-modal-no-footer"&gt;打开无底部按钮对话框&lt;/d-button&gt;<br />
+            &lt;d-modal id="modal-no-footer" header="无底部按钮对话框"
+            show-header show-footer={false}&gt;<br />
+            &lt;d-carousel class="custom-carousel" autoplay delay="2000"
+            indicator-position="right"&gt;<br />
+            &lt;a target="_blank" href="https://example.com/image1"&gt;
+            &lt;img src="path/to/image1.jpg" alt="抽象图片1" /&gt;
+            &lt;/a&gt;<br />
+            &lt;a target="_blank" href="https://example.com/image2"&gt;
+            &lt;img src="path/to/image2.jpg" alt="抽象图片2" /&gt;
+            &lt;/a&gt;<br />
+            &lt;a target="_blank" href="https://example.com/image3"&gt;
+            &lt;img src="path/to/image3.jpg" alt="抽象图片3" /&gt;
+            &lt;/a&gt;<br />
+            &lt;/d-carousel&gt;<br />
+            &lt;/d-modal&gt;<br />
+        </div>
+    </div>
+
+    <!-- 分割线组件 -->
+    <div class="section">
+        <h2 class="section-title">分割线组件 (d-divider)</h2>
+
+        <h3>基本用法</h3>
+        <d-divider></d-divider>
+
+        <div class="code-block">&lt;d-divider&gt;&lt;/d-divider&gt;</div>
+    </div>
+
+    <!-- 消息组件 -->
+    <div class="section">
+        <h2 class="section-title">消息组件 (d-message)</h2>
+
+        <h3>基本用法</h3>
+        <div class="component-row">
+            <d-button type="primary" onclick="$message.info('信息', 100000, 'info')">Info</d-button>
+            <d-button type="secondary" onclick="$message.success('成功', 2000, 'check')">Success</d-button>
+            <d-button type="danger" onclick="$message.warning('警告', 3000, 'warning')">Warning</d-button>
+            <d-button type="text" onclick="$message.error('错误', 4000, 'error')">Error</d-button>
         </div>
 
-        <!-- 抽屉组件 -->
-        <div class="section">
-            <h2 class="section-title">抽屉组件 (d-drawer)</h2>
-
-            <h3>基本用法</h3>
-            <d-button id="open-drawer">打开抽屉</d-button>
-            <d-drawer
-                header="抽屉标题"
-                id="drawer"
-                show-header
-                class="drawer-content">
-                <p>这是抽屉的内容。</p>
-                <p>您可以在这里放置任何内容。</p>
-            </d-drawer>
-
-            <div class="code-block">
-                &lt;d-button id="open-drawer"&gt;打开抽屉&lt;/d-button&gt;<br />
-                &lt;d-drawer header="抽屉标题" id="drawer" show-header
-                class="drawer-content"&gt;<br />
-                &lt;p&gt;这是抽屉的内容。&lt;/p&gt;<br />
-                &lt;p&gt;您可以在这里放置任何内容。&lt;/p&gt;<br />
-                &lt;/d-drawer&gt;
-            </div>
+        <div class="code-block">
+            &lt;d-button type="primary" onclick="$message.info('信息', 1000, 'info')"&gt;Info&lt;/d-button&gt;<br />
+            &lt;d-button type="secondary" onclick="$message.success('成功', 2000,
+            'check')"&gt;Success&lt;/d-button&gt;<br />
+            &lt;d-button type="danger" onclick="$message.warning('警告', 3000,
+            'warning')"&gt;Warning&lt;/d-button&gt;<br />
+            &lt;d-button type="text" onclick="$message.error('错误', 4000, 'error')"&gt;Error&lt;/d-button&gt;<br />
         </div>
+    </div>
+</body>
 
-        <!-- 对话框组件 -->
-        <div class="section">
-            <h2 class="section-title">对话框组件 (d-modal)</h2>
-
-            <h3>基本用法</h3>
-            <d-button id="open-modal">打开对话框</d-button>
-            <d-modal
-                id="modal"
-                header="对话框标题"
-                show-header
-                show-footer>
-                <p>这是对话框的内容。</p>
-                <p>您可以在这里放置任何内容。</p>
-            </d-modal>
-
-            <div class="code-block">
-                &lt;d-button id="open-modal"&gt;打开对话框&lt;/d-button&gt;<br />
-                &lt;d-modal id="modal" header="对话框标题" show-header
-                show-footer&gt;<br />
-                &lt;p&gt;这是对话框的内容。&lt;/p&gt;<br />
-                &lt;p&gt;您可以在这里放置任何内容。&lt;/p&gt;<br />
-                &lt;/d-modal&gt;
-            </div>
-
-            <h3>自定义按钮文本</h3>
-            <d-button id="open-modal-custom">打开自定义对话框</d-button>
-            <d-modal
-                id="modal-custom"
-                header="自定义对话框"
-                confirm-text="好的"
-                cancel-text="算了"
-                show-header
-                show-footer>
-                <p>这是一个自定义按钮文本的对话框。</p>
-            </d-modal>
-
-            <div class="code-block">
-                &lt;d-button
-                id="open-modal-custom"&gt;打开自定义对话框&lt;/d-button&gt;<br />
-                &lt;d-modal id="modal-custom" header="自定义对话框"
-                confirm-text="好的" cancel-text="算了" show-header
-                show-footer&gt;<br />
-                &lt;p&gt;这是一个自定义按钮文本的对话框。&lt;/p&gt;<br />
-                &lt;/d-modal&gt;
-            </div>
-
-            <h3>无底部按钮</h3>
-            <d-button id="open-modal-no-footer">打开无底部按钮对话框</d-button>
-            <d-modal
-                id="modal-no-footer"
-                header="无底部按钮对话框"
-                show-header
-                show-footer="false">
-                <p>这是一个没有底部按钮的对话框。</p>
-            </d-modal>
-
-            <div class="code-block">
-                &lt;d-button
-                id="open-modal-no-footer"&gt;打开无底部按钮对话框&lt;/d-button&gt;<br />
-                &lt;d-modal id="modal-no-footer" header="无底部按钮对话框"
-                show-header show-footer={false}&gt;<br />
-                &lt;p&gt;这是一个没有底部按钮的对话框。&lt;/p&gt;<br />
-                &lt;/d-modal&gt;
-            </div>
-
-            <h3>对话框中使用其他组件</h3>
-            <d-button id="open-modal-with-components">
-                打开对话框中使用其他组件
-            </d-button>
-            <d-modal
-                id="modal-with-components"
-                header="对话框中使用其他组件"
-                show-header
-                show-footer>
-                <d-carousel
-                    class="custom-carousel"
-                    autoplay
-                    delay="2000"
-                    indicator-position="right">
-                    <a
-                        target="_blank"
-                        href="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract01.jpg">
-                        <img
-                            src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract01.jpg"
-                            alt="抽象图片1" />
-                    </a>
-                    <a
-                        target="_blank"
-                        href="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract04.jpg">
-                        <img
-                            src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract04.jpg"
-                            alt="抽象图片2" />
-                    </a>
-                    <a
-                        target="_blank"
-                        href="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract02.jpg">
-                        <img
-                            src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/abstract02.jpg"
-                            alt="抽象图片3" />
-                    </a>
-                </d-carousel>
-            </d-modal>
-
-            <div class="code-block">
-                &lt;d-button
-                id="open-modal-no-footer"&gt;打开无底部按钮对话框&lt;/d-button&gt;<br />
-                &lt;d-modal id="modal-no-footer" header="无底部按钮对话框"
-                show-header show-footer={false}&gt;<br />
-                &lt;d-carousel class="custom-carousel" autoplay delay="2000"
-                indicator-position="right"&gt;<br />
-                &lt;a target="_blank" href="https://example.com/image1"&gt;
-                &lt;img src="path/to/image1.jpg" alt="抽象图片1" /&gt;
-                &lt;/a&gt;<br />
-                &lt;a target="_blank" href="https://example.com/image2"&gt;
-                &lt;img src="path/to/image2.jpg" alt="抽象图片2" /&gt;
-                &lt;/a&gt;<br />
-                &lt;a target="_blank" href="https://example.com/image3"&gt;
-                &lt;img src="path/to/image3.jpg" alt="抽象图片3" /&gt;
-                &lt;/a&gt;<br />
-                &lt;/d-carousel&gt;<br />
-                &lt;/d-modal&gt;<br />
-            </div>
-        </div>
-
-        <!-- 分割线组件 -->
-        <div class="section">
-            <h2 class="section-title">分割线组件 (d-divider)</h2>
-
-            <h3>基本用法</h3>
-            <d-divider></d-divider>
-
-            <div class="code-block">&lt;d-divider&gt;&lt;/d-divider&gt;</div>
-        </div>
-    </body>
 </html>
 
 <script>

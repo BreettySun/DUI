@@ -16,6 +16,21 @@ interface Message {
 export class DMessage {
     @State() messages: Message[] = [];
 
+    private getIconColor(type: Message["type"]): string {
+        switch (type) {
+            case "success":
+                return "#67C23A";
+            case "warning":
+                return "#E6A23C";
+            case "error":
+                return "#F56C6C";
+            case "info":
+                return "#909399";
+            default:
+                return "#909399";
+        }
+    }
+
     @Listen("d-message", { target: "window" })
     handleMessage(ev: CustomEvent<Message>) {
         const message = ev.detail;
@@ -58,6 +73,7 @@ export class DMessage {
                                 {message.icon && (
                                     <d-icon
                                         name={message.icon}
+                                        color={this.getIconColor(message.type)}
                                         class="d-message__icon"></d-icon>
                                 )}
                                 <span>{message.text}</span>

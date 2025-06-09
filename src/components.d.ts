@@ -9,36 +9,44 @@ export namespace Components {
     interface DButton {
         /**
           * 自定义类名
+          * @default ""
          */
         "customClass": string;
         /**
           * 自定义内联样式
+          * @default {}
          */
         "customStyle": { [key: string]: string };
         /**
           * 是否禁用
+          * @default false
          */
         "disabled": boolean;
         /**
           * 是否为圆形按钮
+          * @default false
          */
         "round": boolean;
         /**
           * 按钮尺寸
+          * @default "medium"
          */
         "size": "small" | "medium" | "large";
         /**
           * 按钮类型
+          * @default "primary"
          */
         "type": "primary" | "secondary" | "danger" | "text";
     }
     interface DCarousel {
         /**
           * 是否自动播放
+          * @default false
          */
         "autoplay": boolean;
         /**
           * 自动播放间隔时间（毫秒）
+          * @default 3000
          */
         "delay": number;
         /**
@@ -48,6 +56,7 @@ export namespace Components {
         "goToSlide": (index: number) => Promise<void>;
         /**
           * 指示器位置，可选值：top、bottom、left、right
+          * @default "bottom"
          */
         "indicatorPosition": "top" | "bottom" | "left" | "right";
         /**
@@ -62,54 +71,82 @@ export namespace Components {
     interface DDivider {
         /**
           * 分割线颜色
+          * @default "#bbb"
          */
         "color": string;
         /**
           * 分割线方向，可选值：horizontal、vertical
+          * @default "horizontal"
          */
         "direction": "horizontal" | "vertical";
         /**
           * 分割线样式，可选值：solid、dashed、dotted
+          * @default "solid"
          */
         "lineType": "solid" | "highDensityDashed" | "lowDensityDashed";
         /**
           * 分割线边距
+          * @default "24px 0"
          */
         "margin": string;
         /**
           * 分割线粗细
+          * @default "1px"
          */
         "size": string;
     }
     interface DDrawer {
         "close": () => Promise<void>;
+        /**
+          * @default ""
+         */
         "header": string;
+        /**
+          * @default true
+         */
         "maskClosable": boolean;
         "open": () => Promise<void>;
+        /**
+          * @default "right"
+         */
         "placement": string;
+        /**
+          * @default false
+         */
         "showHeader": boolean;
+        /**
+          * @default false
+         */
         "visible": Boolean;
+        /**
+          * @default "36%"
+         */
         "width": string;
     }
     interface DIcon {
         /**
           * 图标颜色
+          * @default "#333333"
          */
         "color": string;
         /**
           * 图标名称
+          * @default "heart"
          */
         "name": string;
         /**
           * 旋转角度（度数）
+          * @default 0
          */
         "rotate": number;
         /**
           * 图标大小
+          * @default "24px"
          */
         "size": string;
         /**
           * 是否启用旋转动画
+          * @default false
          */
         "spin": boolean;
     }
@@ -117,16 +154,40 @@ export namespace Components {
     }
     interface DModal {
         "cancel": () => Promise<void>;
+        /**
+          * @default "取消"
+         */
         "cancelText": string;
         "close": () => Promise<void>;
         "confirm": () => Promise<void>;
+        /**
+          * @default "确定"
+         */
         "confirmText": string;
+        /**
+          * @default ""
+         */
         "header": string;
+        /**
+          * @default true
+         */
         "maskClosable": boolean;
         "open": () => Promise<void>;
+        /**
+          * @default false
+         */
         "show": boolean;
+        /**
+          * @default true
+         */
         "showFooter": boolean;
+        /**
+          * @default true
+         */
         "showHeader": boolean;
+        /**
+          * @default "520px"
+         */
         "width": string;
     }
 }
@@ -234,81 +295,115 @@ declare namespace LocalJSX {
     interface DButton {
         /**
           * 自定义类名
+          * @default ""
          */
         "customClass"?: string;
         /**
           * 自定义内联样式
+          * @default {}
          */
         "customStyle"?: { [key: string]: string };
         /**
           * 是否禁用
+          * @default false
          */
         "disabled"?: boolean;
         /**
           * 是否为圆形按钮
+          * @default false
          */
         "round"?: boolean;
         /**
           * 按钮尺寸
+          * @default "medium"
          */
         "size"?: "small" | "medium" | "large";
         /**
           * 按钮类型
+          * @default "primary"
          */
         "type"?: "primary" | "secondary" | "danger" | "text";
     }
     interface DCarousel {
         /**
           * 是否自动播放
+          * @default false
          */
         "autoplay"?: boolean;
         /**
           * 自动播放间隔时间（毫秒）
+          * @default 3000
          */
         "delay"?: number;
         /**
           * 指示器位置，可选值：top、bottom、left、right
+          * @default "bottom"
          */
         "indicatorPosition"?: "top" | "bottom" | "left" | "right";
     }
     interface DDivider {
         /**
           * 分割线颜色
+          * @default "#bbb"
          */
         "color"?: string;
         /**
           * 分割线方向，可选值：horizontal、vertical
+          * @default "horizontal"
          */
         "direction"?: "horizontal" | "vertical";
         /**
           * 分割线样式，可选值：solid、dashed、dotted
+          * @default "solid"
          */
         "lineType"?: "solid" | "highDensityDashed" | "lowDensityDashed";
         /**
           * 分割线边距
+          * @default "24px 0"
          */
         "margin"?: string;
         /**
           * 分割线粗细
+          * @default "1px"
          */
         "size"?: string;
     }
     interface DDrawer {
+        /**
+          * @default ""
+         */
         "header"?: string;
+        /**
+          * @default true
+         */
         "maskClosable"?: boolean;
         "onClosed"?: (event: DDrawerCustomEvent<any>) => void;
+        /**
+          * @default "right"
+         */
         "placement"?: string;
+        /**
+          * @default false
+         */
         "showHeader"?: boolean;
+        /**
+          * @default false
+         */
         "visible"?: Boolean;
+        /**
+          * @default "36%"
+         */
         "width"?: string;
     }
     interface DIcon {
         /**
           * 图标颜色
+          * @default "#333333"
          */
         "color"?: string;
         /**
           * 图标名称
+          * @default "heart"
          */
         "name"?: string;
         /**
@@ -317,30 +412,57 @@ declare namespace LocalJSX {
         "onIconClick"?: (event: DIconCustomEvent<MouseEvent>) => void;
         /**
           * 旋转角度（度数）
+          * @default 0
          */
         "rotate"?: number;
         /**
           * 图标大小
+          * @default "24px"
          */
         "size"?: string;
         /**
           * 是否启用旋转动画
+          * @default false
          */
         "spin"?: boolean;
     }
     interface DMessage {
     }
     interface DModal {
+        /**
+          * @default "取消"
+         */
         "cancelText"?: string;
+        /**
+          * @default "确定"
+         */
         "confirmText"?: string;
+        /**
+          * @default ""
+         */
         "header"?: string;
+        /**
+          * @default true
+         */
         "maskClosable"?: boolean;
         "onOnCancel"?: (event: DModalCustomEvent<any>) => void;
         "onOnClose"?: (event: DModalCustomEvent<any>) => void;
         "onOnConfirm"?: (event: DModalCustomEvent<any>) => void;
+        /**
+          * @default false
+         */
         "show"?: boolean;
+        /**
+          * @default true
+         */
         "showFooter"?: boolean;
+        /**
+          * @default true
+         */
         "showHeader"?: boolean;
+        /**
+          * @default "520px"
+         */
         "width"?: string;
     }
     interface IntrinsicElements {

@@ -105,7 +105,7 @@
         .d-message__icon {
             width: 12px;
             height: 12px;
-        }</style> </head> <body> <d-message></d-message> <script>
+        }</style> </head> <body> <!-- 消息组件 --> <d-message></d-message> <script>
         (function () {
             let seed = 0;
             function toast(type, text, duration = 3000, icon) {
@@ -123,7 +123,7 @@
                 error(text, duration, icon) { toast('error', text, duration, icon); },
             };
         })();
-    </script> <!-- 消息组件 --> <h1>DUI 组件库展示</h1> <p>这个页面展示了 DUI 组件库中所有已定义的组件及其用法示例。</p> <!-- 按钮组件 --> <div class="section"> <h2 class="section-title">按钮组件 (d-button)</h2> <h3>基本类型</h3> <div class="component-row"> <d-button type="primary">主要按钮</d-button> <d-button type="secondary">次要按钮</d-button> <d-button type="danger">危险按钮</d-button> <d-button type="text">文本按钮</d-button> </div> <div class="code-block"> &lt;d-button type="primary"&gt;主要按钮&lt;/d-button&gt;<br> &lt;d-button type="secondary"&gt;次要按钮&lt;/d-button&gt;<br> &lt;d-button type="danger"&gt;危险按钮&lt;/d-button&gt;<br> &lt;d-button type="text"&gt;文本按钮&lt;/d-button&gt; </div> <h3>不同尺寸</h3> <div class="component-row"> <d-button size="small" type="primary"> 小按钮 </d-button> <d-button size="medium" type="primary"> 中按钮 </d-button> <d-button size="large" type="primary"> 大按钮 </d-button> </div> <div class="code-block"> &lt;d-button size="small"
+    </script> <h1>DUI 组件库展示</h1> <p>这个页面展示了 DUI 组件库中所有已定义的组件及其用法示例。</p> <!-- 按钮组件 --> <div class="section"> <h2 class="section-title">按钮组件 (d-button)</h2> <h3>基本类型</h3> <div class="component-row"> <d-button type="primary">主要按钮</d-button> <d-button type="secondary">次要按钮</d-button> <d-button type="danger">危险按钮</d-button> <d-button type="text">文本按钮</d-button> </div> <div class="code-block"> &lt;d-button type="primary"&gt;主要按钮&lt;/d-button&gt;<br> &lt;d-button type="secondary"&gt;次要按钮&lt;/d-button&gt;<br> &lt;d-button type="danger"&gt;危险按钮&lt;/d-button&gt;<br> &lt;d-button type="text"&gt;文本按钮&lt;/d-button&gt; </div> <h3>不同尺寸</h3> <div class="component-row"> <d-button size="small" type="primary"> 小按钮 </d-button> <d-button size="medium" type="primary"> 中按钮 </d-button> <d-button size="large" type="primary"> 大按钮 </d-button> </div> <div class="code-block"> &lt;d-button size="small"
             type="primary"&gt;小按钮&lt;/d-button&gt;<br> &lt;d-button size="medium"
             type="primary"&gt;中按钮&lt;/d-button&gt;<br> &lt;d-button size="large"
             type="primary"&gt;大按钮&lt;/d-button&gt; </div> <h3>禁用状态</h3> <div class="component-row"> <d-button disabled="" type="primary"> 禁用按钮 </d-button> <d-button disabled="" type="secondary"> 禁用按钮 </d-button> <d-button disabled="" type="danger"> 禁用按钮 </d-button> </div> <div class="code-block"> &lt;d-button disabled
@@ -177,7 +177,10 @@
             &lt;img src="path/to/image3.jpg" alt="抽象图片3" /&gt;
             &lt;/a&gt;<br> &lt;/d-carousel&gt;<br> &lt;/d-modal&gt;<br> </div> </div> <!-- 分割线组件 --> <div class="section"> <h2 class="section-title">分割线组件 (d-divider)</h2> <h3>基本用法</h3> <d-divider></d-divider> <div class="code-block">&lt;d-divider&gt;&lt;/d-divider&gt;</div> </div> <!-- 消息组件 --> <div class="section"> <h2 class="section-title">消息组件 (d-message)</h2> <h3>基本用法</h3> <div class="component-row"> <d-button type="primary" onclick="$message.info('信息', 1000, 'info')">Info</d-button> <d-button type="secondary" onclick="$message.success('成功', 2000, 'check')">Success</d-button> <d-button type="danger" onclick="$message.warning('警告', 3000, 'warning')">Warning</d-button> <d-button type="text" onclick="$message.error('错误', 4000, 'error')">Error</d-button> </div> <div class="code-block"> &lt;d-button type="primary" onclick="$message.info('信息', 1000, 'info')"&gt;Info&lt;/d-button&gt;<br> &lt;d-button type="secondary" onclick="$message.success('成功', 2000,
             'check')"&gt;Success&lt;/d-button&gt;<br> &lt;d-button type="danger" onclick="$message.warning('警告', 3000,
-            'warning')"&gt;Warning&lt;/d-button&gt;<br> &lt;d-button type="text" onclick="$message.error('错误', 4000, 'error')"&gt;Error&lt;/d-button&gt;<br> </div> </div> <script>
+            'warning')"&gt;Warning&lt;/d-button&gt;<br> &lt;d-button type="text" onclick="$message.error('错误', 4000, 'error')"&gt;Error&lt;/d-button&gt;<br> </div> </div> <!-- 返回顶部组件 --> <div class="section"> <h2 class="section-title">返回顶部组件 (d-backtop)</h2> <h3>基本用法</h3> <d-backtop> BackTop </d-backtop> <div class="code-block"> &lt;d-backtop&gt;BackTop&lt;/d-backtop&gt; </div> <h3>自定义图标 | 自定义位置</h3> <d-backtop right="40px" bottom="100px"> <d-icon name="arrow-up" color="#909399"></d-icon></d-backtop> <div class="code-block"> &lt;d-backtop right="40px" bottom="100px"&gt;
+            &lt;d-icon name="arrow-up" color="#909399" /&gt;
+            &lt;/d-backtop&gt; </div> <h3>监听滚动事件</h3> <d-backtop target="#scroll-container" visibility-height="200" bottom="180px">Top</d-backtop> <div class="code-block"> &lt;d-backtop target="#scroll-container" visibility-height="200"
+            bottom="180px"&gt;Top&lt;/d-backtop&gt; </div> </div> <script>
     const iconHeart = document.querySelector("#icon-heart");
     const btnFav = document.querySelector("#btn-fav");
     btnFav.onclick = () => {

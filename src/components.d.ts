@@ -6,6 +6,24 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface DBacktop {
+        /**
+          * @default "40px"
+         */
+        "bottom": string;
+        /**
+          * @default "40px"
+         */
+        "right": string;
+        /**
+          * @default ""
+         */
+        "target": string;
+        /**
+          * @default 400
+         */
+        "visibilityHeight": number;
+    }
     interface DButton {
         /**
           * 自定义类名
@@ -204,6 +222,12 @@ export interface DModalCustomEvent<T> extends CustomEvent<T> {
     target: HTMLDModalElement;
 }
 declare global {
+    interface HTMLDBacktopElement extends Components.DBacktop, HTMLStencilElement {
+    }
+    var HTMLDBacktopElement: {
+        prototype: HTMLDBacktopElement;
+        new (): HTMLDBacktopElement;
+    };
     interface HTMLDButtonElement extends Components.DButton, HTMLStencilElement {
     }
     var HTMLDButtonElement: {
@@ -282,6 +306,7 @@ declare global {
         new (): HTMLDModalElement;
     };
     interface HTMLElementTagNameMap {
+        "d-backtop": HTMLDBacktopElement;
         "d-button": HTMLDButtonElement;
         "d-carousel": HTMLDCarouselElement;
         "d-divider": HTMLDDividerElement;
@@ -292,6 +317,24 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface DBacktop {
+        /**
+          * @default "40px"
+         */
+        "bottom"?: string;
+        /**
+          * @default "40px"
+         */
+        "right"?: string;
+        /**
+          * @default ""
+         */
+        "target"?: string;
+        /**
+          * @default 400
+         */
+        "visibilityHeight"?: number;
+    }
     interface DButton {
         /**
           * 自定义类名
@@ -466,6 +509,7 @@ declare namespace LocalJSX {
         "width"?: string;
     }
     interface IntrinsicElements {
+        "d-backtop": DBacktop;
         "d-button": DButton;
         "d-carousel": DCarousel;
         "d-divider": DDivider;
@@ -479,6 +523,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "d-backtop": LocalJSX.DBacktop & JSXBase.HTMLAttributes<HTMLDBacktopElement>;
             "d-button": LocalJSX.DButton & JSXBase.HTMLAttributes<HTMLDButtonElement>;
             "d-carousel": LocalJSX.DCarousel & JSXBase.HTMLAttributes<HTMLDCarouselElement>;
             "d-divider": LocalJSX.DDivider & JSXBase.HTMLAttributes<HTMLDDividerElement>;

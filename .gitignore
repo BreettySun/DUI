@@ -31,3 +31,5 @@ loader
 
 .stencil
 *storybook.log
+
+*.zip

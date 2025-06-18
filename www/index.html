@@ -1,4 +1,4 @@
-<!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"> <title>DUI 组件库展示</title> <link rel="modulepreload" href="/build/p-c6595d5e.js"><link rel="modulepreload" href="/build/p-D1K1rt23.js"><script type="module" src="/build/p-c6595d5e.js" data-stencil data-resources-url="/build/" data-stencil-namespace="dui"></script> <script nomodule="" src="/build/dui.js" data-stencil></script> <style>body {
+<!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"> <title>DUI 组件库展示</title> <script type="module" src="/build/dui.esm.js" data-stencil></script> <script nomodule="" src="/build/dui.js" data-stencil></script> <style>body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
                 Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
                 "Helvetica Neue", sans-serif;
@@ -105,6 +105,14 @@
         .d-message__icon {
             width: 12px;
             height: 12px;
+        }
+
+        #home-icon::part(icon) {
+            fill: #1890ff;
+        }
+
+        #home-icon:hover::part(icon) {
+            fill: #ff4d4f;
         }</style> </head> <body> <!-- 消息组件 --> <d-message></d-message> <script>
         (function () {
             let seed = 0;
@@ -123,7 +131,7 @@
                 error(text, duration, icon) { toast('error', text, duration, icon); },
             };
         })();
-    </script> <h1>DUI 组件库展示</h1> <p>这个页面展示了 DUI 组件库中所有已定义的组件及其用法示例。</p> <!-- 按钮组件 --> <div class="section"> <h2 class="section-title">按钮组件 (d-button)</h2> <h3>基本类型</h3> <div class="component-row"> <d-button type="primary">主要按钮</d-button> <d-button type="secondary">次要按钮</d-button> <d-button type="danger">危险按钮</d-button> <d-button type="text">文本按钮</d-button> </div> <div class="code-block"> &lt;d-button type="primary"&gt;主要按钮&lt;/d-button&gt;<br> &lt;d-button type="secondary"&gt;次要按钮&lt;/d-button&gt;<br> &lt;d-button type="danger"&gt;危险按钮&lt;/d-button&gt;<br> &lt;d-button type="text"&gt;文本按钮&lt;/d-button&gt; </div> <h3>不同尺寸</h3> <div class="component-row"> <d-button size="small" type="primary"> 小按钮 </d-button> <d-button size="medium" type="primary"> 中按钮 </d-button> <d-button size="large" type="primary"> 大按钮 </d-button> </div> <div class="code-block"> &lt;d-button size="small"
+    </script> <h1>DUI 组件库展示</h1> <p>这个页面展示了 DUI 组件库中所有已定义的组件及其用法示例。</p> <!-- 面包屑组件 --> <div class="section"> <h2 class="section-title">面包屑组件 (d-breadcrumb)</h2> <h3>基本用法</h3> <d-breadcrumb> <d-breadcrumb-item position="1" href="/application-center"> <d-icon name="home" size="24px" color="#1890ff" id="home-icon"></d-icon> </d-breadcrumb-item> <d-breadcrumb-item position="2" href="/application-center"> Application Center </d-breadcrumb-item> <d-breadcrumb-item position="3" href="/application-list"> Application List </d-breadcrumb-item> <d-breadcrumb-item position="4">An Application</d-breadcrumb-item> </d-breadcrumb> <d-breadcrumb separator=">"> <d-breadcrumb-item position="1">Home</d-breadcrumb-item> <d-breadcrumb-item position="2" href="/application-center"> Application Center </d-breadcrumb-item> <d-breadcrumb-item position="3" href="/application-list"> Application List </d-breadcrumb-item> <d-breadcrumb-item position="4">An Application</d-breadcrumb-item> </d-breadcrumb> </div> <!-- 按钮组件 --> <div class="section"> <h2 class="section-title">按钮组件 (d-button)</h2> <h3>基本类型</h3> <div class="component-row"> <d-button type="primary">主要按钮</d-button> <d-button type="secondary">次要按钮</d-button> <d-button type="danger">危险按钮</d-button> <d-button type="text">文本按钮</d-button> </div> <div class="code-block"> &lt;d-button type="primary"&gt;主要按钮&lt;/d-button&gt;<br> &lt;d-button type="secondary"&gt;次要按钮&lt;/d-button&gt;<br> &lt;d-button type="danger"&gt;危险按钮&lt;/d-button&gt;<br> &lt;d-button type="text"&gt;文本按钮&lt;/d-button&gt; </div> <h3>不同尺寸</h3> <div class="component-row"> <d-button size="small" type="primary"> 小按钮 </d-button> <d-button size="medium" type="primary"> 中按钮 </d-button> <d-button size="large" type="primary"> 大按钮 </d-button> </div> <div class="code-block"> &lt;d-button size="small"
             type="primary"&gt;小按钮&lt;/d-button&gt;<br> &lt;d-button size="medium"
             type="primary"&gt;中按钮&lt;/d-button&gt;<br> &lt;d-button size="large"
             type="primary"&gt;大按钮&lt;/d-button&gt; </div> <h3>禁用状态</h3> <div class="component-row"> <d-button disabled="" type="primary"> 禁用按钮 </d-button> <d-button disabled="" type="secondary"> 禁用按钮 </d-button> <d-button disabled="" type="danger"> 禁用按钮 </d-button> </div> <div class="code-block"> &lt;d-button disabled
@@ -218,4 +226,13 @@
         const modal = document.querySelector("#modal-with-components");
         modal.open();
     };
+</script><script>
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  // auto-unregister service worker during dev mode
+  navigator.serviceWorker.getRegistration().then(function(registration) {
+    if (registration) {
+      registration.unregister().then(function() { location.reload(true) });
+    }
+  });
+}
 </script></body></html>

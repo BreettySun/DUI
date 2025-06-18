@@ -118,6 +118,14 @@
             width: 12px;
             height: 12px;
         }
+
+        #home-icon::part(icon) {
+            fill: #1890ff;
+        }
+
+        #home-icon:hover::part(icon) {
+            fill: #ff4d4f;
+        }
     </style>
 </head>
 
@@ -146,6 +154,35 @@
 
     <h1>DUI 组件库展示</h1>
     <p>这个页面展示了 DUI 组件库中所有已定义的组件及其用法示例。</p>
+
+    <!-- 面包屑组件 -->
+    <div class="section">
+        <h2 class="section-title">面包屑组件 (d-breadcrumb)</h2>
+        <h3>基本用法</h3>
+        <d-breadcrumb>
+            <d-breadcrumb-item position="1" href="/application-center">
+                <d-icon name="home" size="24px" color="#1890ff" id="home-icon"></d-icon>
+            </d-breadcrumb-item>
+            <d-breadcrumb-item position="2" href="/application-center">
+                Application Center
+            </d-breadcrumb-item>
+            <d-breadcrumb-item position="3" href="/application-list">
+                Application List
+            </d-breadcrumb-item>
+            <d-breadcrumb-item position="4">An Application</d-breadcrumb-item>
+        </d-breadcrumb>
+        <d-breadcrumb separator=">">
+            <d-breadcrumb-item position="1">Home</d-breadcrumb-item>
+            <d-breadcrumb-item position="2" href="/application-center">
+                Application Center
+            </d-breadcrumb-item>
+            <d-breadcrumb-item position="3" href="/application-list">
+                Application List
+            </d-breadcrumb-item>
+            <d-breadcrumb-item position="4">An Application</d-breadcrumb-item>
+        </d-breadcrumb>
+
+    </div>
 
     <!-- 按钮组件 -->
     <div class="section">

@@ -24,6 +24,16 @@ export namespace Components {
          */
         "visibilityHeight": number;
     }
+    interface DBreadcrumb {
+        /**
+          * @default "/"
+         */
+        "separator": string;
+    }
+    interface DBreadcrumbItem {
+        "href": string;
+        "position": number;
+    }
     interface DButton {
         /**
           * 自定义类名
@@ -228,6 +238,18 @@ declare global {
         prototype: HTMLDBacktopElement;
         new (): HTMLDBacktopElement;
     };
+    interface HTMLDBreadcrumbElement extends Components.DBreadcrumb, HTMLStencilElement {
+    }
+    var HTMLDBreadcrumbElement: {
+        prototype: HTMLDBreadcrumbElement;
+        new (): HTMLDBreadcrumbElement;
+    };
+    interface HTMLDBreadcrumbItemElement extends Components.DBreadcrumbItem, HTMLStencilElement {
+    }
+    var HTMLDBreadcrumbItemElement: {
+        prototype: HTMLDBreadcrumbItemElement;
+        new (): HTMLDBreadcrumbItemElement;
+    };
     interface HTMLDButtonElement extends Components.DButton, HTMLStencilElement {
     }
     var HTMLDButtonElement: {
@@ -307,6 +329,8 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "d-backtop": HTMLDBacktopElement;
+        "d-breadcrumb": HTMLDBreadcrumbElement;
+        "d-breadcrumb-item": HTMLDBreadcrumbItemElement;
         "d-button": HTMLDButtonElement;
         "d-carousel": HTMLDCarouselElement;
         "d-divider": HTMLDDividerElement;
@@ -334,6 +358,16 @@ declare namespace LocalJSX {
           * @default 400
          */
         "visibilityHeight"?: number;
+    }
+    interface DBreadcrumb {
+        /**
+          * @default "/"
+         */
+        "separator"?: string;
+    }
+    interface DBreadcrumbItem {
+        "href"?: string;
+        "position"?: number;
     }
     interface DButton {
         /**
@@ -510,6 +544,8 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "d-backtop": DBacktop;
+        "d-breadcrumb": DBreadcrumb;
+        "d-breadcrumb-item": DBreadcrumbItem;
         "d-button": DButton;
         "d-carousel": DCarousel;
         "d-divider": DDivider;
@@ -524,6 +560,8 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "d-backtop": LocalJSX.DBacktop & JSXBase.HTMLAttributes<HTMLDBacktopElement>;
+            "d-breadcrumb": LocalJSX.DBreadcrumb & JSXBase.HTMLAttributes<HTMLDBreadcrumbElement>;
+            "d-breadcrumb-item": LocalJSX.DBreadcrumbItem & JSXBase.HTMLAttributes<HTMLDBreadcrumbItemElement>;
             "d-button": LocalJSX.DButton & JSXBase.HTMLAttributes<HTMLDButtonElement>;
             "d-carousel": LocalJSX.DCarousel & JSXBase.HTMLAttributes<HTMLDCarouselElement>;
             "d-divider": LocalJSX.DDivider & JSXBase.HTMLAttributes<HTMLDDividerElement>;

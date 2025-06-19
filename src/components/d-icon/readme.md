@@ -23,6 +23,13 @@
 | `iconClick` | 点击事件        | `CustomEvent<MouseEvent>` |
 
 
+## Shadow Parts
+
+| Part     | Description |
+| -------- | ----------- |
+| `"icon"` |             |
+
+
 ## Dependencies
 
 ### Used by

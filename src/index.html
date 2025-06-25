@@ -127,6 +127,44 @@
             fill: #ff4d4f;
         }
     </style>
+
+    <style>
+        .demo-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .code-block {
+            background: #f6f8fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 16px 0;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+        }
+
+        .result {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            background: white;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e6f7ff;
+            border: 1px solid #91d5ff;
+            border-radius: 4px;
+            color: #1890ff;
+        }
+    </style>
 </head>
 
 <body>
@@ -154,6 +192,168 @@
 
     <h1>DUI 组件库展示</h1>
     <p>这个页面展示了 DUI 组件库中所有已定义的组件及其用法示例。</p>
+
+    <!-- 折叠面板组件 -->
+    <h1>D-Collapse 折叠面板组件演示</h1>
+    <h2>1. 基本用法</h2>
+    <div class="code-block">
+        &lt;d-collapse
+        items='[
+        {
+        "id": "1",
+        "title": "面板 1",
+        "content": "这是第一个面板的内容，可以包含任何文本内容。"
+        },
+        {
+        "id": "2",
+        "title": "面板 2",
+        "content": "这是第二个面板的内容，支持多行文本和HTML内容。"
+        }
+        ]'&gt;
+        &lt;/d-collapse&gt;
+    </div>
+    <div class="result">
+        <d-collapse items='[
+                  {
+                    "id": "1",
+                    "title": "面板 1",
+                    "content": "这是第一个面板的内容，可以包含任何文本内容。"
+                  },
+                  {
+                    "id": "2", 
+                    "title": "面板 2",
+                    "content": "这是第二个面板的内容，支持多行文本和HTML内容。"
+                  }
+                ]'>
+        </d-collapse>
+    </div>
+
+
+
+    <h2>2. 手风琴模式</h2>
+    <div class="code-block">
+        &lt;d-collapse
+        accordion="true"
+        items='[
+        {
+        "id": "1",
+        "title": "手风琴面板 1",
+        "content": "手风琴模式下只能展开一个面板，点击其他面板会自动收起当前展开的面板。"
+        },
+        {
+        "id": "2",
+        "title": "手风琴面板 2",
+        "content": "这样可以节省页面空间，提供更好的用户体验。"
+        },
+        {
+        "id": "3",
+        "title": "手风琴面板 3",
+        "content": "第三个面板的内容。"
+        }
+        ]'&gt;
+        &lt;/d-collapse&gt;
+    </div>
+    <div class="result">
+        <d-collapse accordion="true" items='[
+                  {
+                    "id": "1",
+                    "title": "手风琴面板 1", 
+                    "content": "手风琴模式下只能展开一个面板，点击其他面板会自动收起当前展开的面板。"
+                  },
+                  {
+                    "id": "2",
+                    "title": "手风琴面板 2",
+                    "content": "这样可以节省页面空间，提供更好的用户体验。"
+                  },
+                  {
+                    "id": "3",
+                    "title": "手风琴面板 3",
+                    "content": "第三个面板的内容。"
+                  }
+                ]'>
+        </d-collapse>
+    </div>
+
+
+    <h2>3. 默认展开项</h2>
+    <div class="code-block">
+        &lt;d-collapse
+        default-active-keys='["1", "3"]'
+        items='[
+        {
+        "id": "1",
+        "title": "默认展开的面板 1",
+        "content": "这个面板默认是展开的。"
+        },
+        {
+        "id": "2",
+        "title": "面板 2",
+        "content": "这个面板默认是收起的。"
+        },
+        {
+        "id": "3",
+        "title": "默认展开的面板 3",
+        "content": "这个面板也是默认展开的。"
+        }
+        ]'&gt;
+        &lt;/d-collapse&gt;
+    </div>
+    <div class="result">
+        <d-collapse default-active-keys='["1", "3"]' items='[
+                  {
+                    "id": "1",
+                    "title": "默认展开的面板 1",
+                    "content": "这个面板默认是展开的。"
+                  },
+                  {
+                    "id": "2",
+                    "title": "面板 2",
+                    "content": "这个面板默认是收起的。"
+                  },
+                  {
+                    "id": "3", 
+                    "title": "默认展开的面板 3",
+                    "content": "这个面板也是默认展开的。"
+                  }
+                ]'>
+        </d-collapse>
+    </div>
+
+
+    <h2>4. 禁用状态</h2>
+    <div class="code-block">
+        &lt;d-collapse
+        items='[
+        {
+        "id": "1",
+        "title": "正常面板",
+        "content": "这个面板可以正常点击和展开。"
+        },
+        {
+        "id": "2",
+        "title": "禁用面板",
+        "content": "这个面板被禁用了，无法点击。",
+        "disabled": true
+        }
+        ]'&gt;
+        &lt;/d-collapse&gt;
+    </div>
+    <div class="result">
+        <d-collapse items='[
+                  {
+                    "id": "1",
+                    "title": "正常面板",
+                    "content": "这个面板可以正常点击和展开。"
+                  },
+                  {
+                    "id": "2",
+                    "title": "禁用面板",
+                    "content": "这个面板被禁用了，无法点击。",
+                    "disabled": true
+                  }
+                ]'>
+        </d-collapse>
+    </div>
 
     <!-- 面包屑组件 -->
     <div class="section">

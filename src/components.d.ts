@@ -5,6 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { CollapseItem } from "./components/d-collapse/d-collapse";
+export { CollapseItem } from "./components/d-collapse/d-collapse";
 export namespace Components {
     interface DBacktop {
         /**
@@ -95,6 +97,20 @@ export namespace Components {
           * 手动切换到上一张幻灯片
          */
         "prevSlide": () => Promise<void>;
+    }
+    interface DCollapse {
+        /**
+          * @default false
+         */
+        "accordion": boolean;
+        /**
+          * @default []
+         */
+        "defaultActiveKeys": string | string[];
+        /**
+          * @default []
+         */
+        "items": string | CollapseItem[];
     }
     interface DDivider {
         /**
@@ -219,6 +235,10 @@ export namespace Components {
         "width": string;
     }
 }
+export interface DCollapseCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDCollapseElement;
+}
 export interface DDrawerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDDrawerElement;
@@ -261,6 +281,23 @@ declare global {
     var HTMLDCarouselElement: {
         prototype: HTMLDCarouselElement;
         new (): HTMLDCarouselElement;
+    };
+    interface HTMLDCollapseElementEventMap {
+        "change": string[];
+    }
+    interface HTMLDCollapseElement extends Components.DCollapse, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDCollapseElementEventMap>(type: K, listener: (this: HTMLDCollapseElement, ev: DCollapseCustomEvent<HTMLDCollapseElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDCollapseElementEventMap>(type: K, listener: (this: HTMLDCollapseElement, ev: DCollapseCustomEvent<HTMLDCollapseElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDCollapseElement: {
+        prototype: HTMLDCollapseElement;
+        new (): HTMLDCollapseElement;
     };
     interface HTMLDDividerElement extends Components.DDivider, HTMLStencilElement {
     }
@@ -333,6 +370,7 @@ declare global {
         "d-breadcrumb-item": HTMLDBreadcrumbItemElement;
         "d-button": HTMLDButtonElement;
         "d-carousel": HTMLDCarouselElement;
+        "d-collapse": HTMLDCollapseElement;
         "d-divider": HTMLDDividerElement;
         "d-drawer": HTMLDDrawerElement;
         "d-icon": HTMLDIconElement;
@@ -417,6 +455,21 @@ declare namespace LocalJSX {
           * @default "bottom"
          */
         "indicatorPosition"?: "top" | "bottom" | "left" | "right";
+    }
+    interface DCollapse {
+        /**
+          * @default false
+         */
+        "accordion"?: boolean;
+        /**
+          * @default []
+         */
+        "defaultActiveKeys"?: string | string[];
+        /**
+          * @default []
+         */
+        "items"?: string | CollapseItem[];
+        "onChange"?: (event: DCollapseCustomEvent<string[]>) => void;
     }
     interface DDivider {
         /**
@@ -548,6 +601,7 @@ declare namespace LocalJSX {
         "d-breadcrumb-item": DBreadcrumbItem;
         "d-button": DButton;
         "d-carousel": DCarousel;
+        "d-collapse": DCollapse;
         "d-divider": DDivider;
         "d-drawer": DDrawer;
         "d-icon": DIcon;
@@ -564,6 +618,7 @@ declare module "@stencil/core" {
             "d-breadcrumb-item": LocalJSX.DBreadcrumbItem & JSXBase.HTMLAttributes<HTMLDBreadcrumbItemElement>;
             "d-button": LocalJSX.DButton & JSXBase.HTMLAttributes<HTMLDButtonElement>;
             "d-carousel": LocalJSX.DCarousel & JSXBase.HTMLAttributes<HTMLDCarouselElement>;
+            "d-collapse": LocalJSX.DCollapse & JSXBase.HTMLAttributes<HTMLDCollapseElement>;
             "d-divider": LocalJSX.DDivider & JSXBase.HTMLAttributes<HTMLDDividerElement>;
             "d-drawer": LocalJSX.DDrawer & JSXBase.HTMLAttributes<HTMLDDrawerElement>;
             "d-icon": LocalJSX.DIcon & JSXBase.HTMLAttributes<HTMLDIconElement>;
